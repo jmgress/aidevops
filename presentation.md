@@ -1,23 +1,3 @@
-<!-- .slide: class="lead intro" -->
-
-# DevOps in the Age of AI
-
-<img class="avatar" src="https://jmgress.github.io/usegenai/img/00-jamesgress.png" alt="James Gress">
-
-## James Gress
-
-### AI Director, Accenture
-
-[LinkedIn: jamesgress](https://linkedin.com/in/jamesgress/) · [GitHub: jmgress](https://github.com/jmgress)
-
-[Tampa Bay Generative AI Meetup](https://www.meetup.com/tampa-bay-generative-ai-meetup/)
-
-Note:
-Welcome everyone. Today we are diving into one of the most transformative shifts in software engineering: "DevOps in the Age of AI".
-Over the past decade, DevOps revolutionized how we build, test, and deploy software through automation and cultural alignment. Now, Artificial Intelligence—specifically Generative AI, Machine Learning, and Agentic Systems—is propelling DevOps into its next evolutionary phase: moving from script-driven automation to intelligent autonomy.
-
----
-
 # Executive Summary: The Paradigm Shift
 
 ### The Evolution of Software Delivery
