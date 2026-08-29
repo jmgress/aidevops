@@ -198,3 +198,44 @@
   background-color: transparent;
   color: #484f58;
 }
+
+/* Intro / speaker bio slide */
+.reveal .slides section.intro {
+  align-items: center;
+}
+
+.reveal .slides section.intro h1 {
+  font-size: 2em;
+  border-bottom: none;
+  margin-bottom: 24px;
+}
+
+.reveal .slides section.intro h2 {
+  font-size: 1.4em;
+  color: var(--strong);
+  font-weight: 600;
+  margin: 10px 0 4px;
+}
+
+.reveal .slides section.intro h3 {
+  font-size: 1em;
+  color: var(--muted);
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+
+.reveal .slides section.intro p {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin: 6px 0;
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--heading);
+  display: block;
+  margin: 0 auto 16px;
+}
