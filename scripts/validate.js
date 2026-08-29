@@ -4,7 +4,6 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const EXPECTED_PRESENTATION_TITLE = 'DevOps in the Age of AI';
 const EXPECTED_SPEAKER_NOTES_HEADER = '# Speaker Notes & Presenter Guide: DevOps in the Age of AI';
-const EXPECTED_SLIDE_COUNT = 18;
 
 console.log('Running presentation validation checks...');
 
@@ -14,7 +13,6 @@ const requiredFiles = [
   'LICENSE',
   'index.html',
   'css/theme.css',
-  'presentation.md',
   'SPEAKER_NOTES.md',
   'package.json',
   '.gitignore',
@@ -35,34 +33,39 @@ for (const file of requiredFiles) {
   console.log(`✓ ${file} exists`);
 }
 
-// Validate presentation.md structure (no Marp frontmatter expected)
-const presMd = fs.readFileSync(path.join(root, 'presentation.md'), 'utf-8');
-
-if (presMd.includes('marp: true')) {
-  console.error('❌ presentation.md still contains Marp frontmatter ("marp: true")');
-  process.exit(1);
-}
-
-const slideCount = presMd.trim().split(/\r?\n---\r?\n/).filter(Boolean).length;
-console.log(`✓ presentation.md has ${slideCount} slides`);
-
-if (slideCount !== EXPECTED_SLIDE_COUNT) {
-  console.error(`❌ Expected exactly ${EXPECTED_SLIDE_COUNT} slides in presentation.md, but found ${slideCount}`);
-  process.exit(1);
-}
-
-if (!presMd.includes(EXPECTED_PRESENTATION_TITLE)) {
-  console.error('❌ presentation.md missing expected title');
-  process.exit(1);
-}
-
-// Validate index.html wires up reveal.js and loads the markdown deck
+// Validate index.html is the self-contained deck (slides inlined, no runtime fetch).
+// It must be openable directly on GitHub Pages with no build step or external framework.
 const indexHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf-8');
-for (const needle of ['reveal.js', 'data-markdown="presentation.md"', 'Reveal.initialize']) {
+
+if (!indexHtml.includes(EXPECTED_PRESENTATION_TITLE)) {
+  console.error('❌ index.html missing expected title');
+  process.exit(1);
+}
+
+// Slides live inline as <section class="slide"> elements — count them.
+const slideCount = (indexHtml.match(/class="slide/g) || []).length;
+console.log(`✓ index.html has ${slideCount} inline slides`);
+
+if (slideCount < 1) {
+  console.error('❌ Expected at least one inline slide in index.html');
+  process.exit(1);
+}
+
+for (const needle of ['id="deck"', 'css/theme.css']) {
   if (!indexHtml.includes(needle)) {
     console.error(`❌ index.html missing expected reference: ${needle}`);
     process.exit(1);
   }
+}
+
+// The deck must be self-contained: no runtime data fetch and no slide framework.
+if (/fetch\(/.test(indexHtml)) {
+  console.error('❌ index.html must be self-contained — no runtime fetch() (breaks as a static file)');
+  process.exit(1);
+}
+if (/reveal\.js|reveal-md|marp/i.test(indexHtml)) {
+  console.error('❌ index.html still references reveal.js / reveal-md / Marp');
+  process.exit(1);
 }
 console.log('✓ index.html validated');
 

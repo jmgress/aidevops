@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>DevOps in the Age of AI</title>
+  <meta name="description" content="DevOps in the Age of AI — a standalone HTML presentation deck.">
+  <meta name="author" content="James Gress">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>
+  <div id="stage">
+    <div id="deck">
+
+      <!-- 1 -->
+      <section class="slide lead intro">
+        <h1>DevOps in the Age of AI</h1>
+        <img class="avatar" src="https://jmgress.github.io/usegenai/img/00-jamesgress.png" alt="James Gress">
+        <h2>James Gress</h2>
+        <h3>AI Director, Accenture</h3>
+        <p><a href="https://linkedin.com/in/jamesgress/" target="_blank" rel="noopener">LinkedIn: jamesgress</a> ·
+          <a href="https://github.com/jmgress" target="_blank" rel="noopener">GitHub: jmgress</a></p>
+        <p><a href="https://www.meetup.com/tampa-bay-generative-ai-meetup/" target="_blank" rel="noopener">Tampa Bay
+            Generative AI Meetup</a></p>
+      </section>
+
+      <!-- 2 -->
+      <section class="slide">
+        <h1>Executive Summary: The Paradigm Shift</h1>
+        <h3>The Evolution of Software Delivery</h3>
+        <ol>
+          <li><strong>Phase 1: Manual Operations</strong> (Siloed teams, ticket-driven deployments, days/weeks lead
+            time)</li>
+          <li><strong>Phase 2: Infrastructure as Code &amp; CI/CD</strong> (Automated build pipelines, programmatic
+            infra, hours lead time)</li>
+          <li><strong>Phase 3: DevOps at the Speed of Agile (2015)</strong> (DevOps emerged to match Agile
+            velocity—pipelines, test gates, and IaC tuned to move <em>deterministic code</em> from commit to production
+            fast and safely)</li>
+          <li><strong>Phase 4: DevOps at the Speed of AI</strong> (The product itself now ships prompts, models, and
+            agents—<em>probabilistic</em> artifacts our 2015-era pipelines were never designed to handle)</li>
+        </ol>
+        <div class="highlight-box">
+          <p>💡 <strong>Key Premise:</strong> DevOps emerged in 2015 to operate at Agile speed. Now the thing we ship has
+            changed—so DevOps must be rebuilt to operate at AI speed, with both velocity <em>and</em> non-determinism in
+            scope.</p>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="slide">
+        <h1>From the Speed of Agile to the Speed of AI</h1>
+        <h3>Why the 2015-era DevOps toolchain suddenly feels inadequate</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Built for Agile (2015)</h3>
+            <p>DevOps emerged to move <strong>deterministic code</strong> from commit to production fast and safely. We
+              designed CI/CD, IaC, and test gates for Agile's velocity: same input, same output—every time.</p>
+          </div>
+          <div class="card">
+            <h3>Now We Build for AI</h3>
+            <p>Our products embed <strong>prompts, models, and agents</strong>. The same input can produce different
+              outputs, and a dependency we don't control can change behavior overnight.</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 0.75em;">
+          <h3>The artifact changed</h3>
+          <p>A prompt edit or a model swap can alter production behavior as much as a code change—yet source control,
+            build, test, security, and release were never designed to <em>see</em> them.</p>
+        </div>
+        <div class="highlight-box">
+          <p>💡 <strong>Key Premise:</strong> DevOps emerged in 2015 at the speed of Agile. AI-embedded products force us
+            to rebuild every DevOps stage to operate at AI speed—with the velocity and non-determinism AI demands.</p>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="slide">
+        <h1>Why Rebuild DevOps for AI Now?</h1>
+        <h3>Four forces making AI-embedded delivery a first-class DevOps problem</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3>1. AI Is Now in the Product</h3>
+            <p>LLMs, prompts, and agents ship to users. The behavior that defines quality lives in artifacts our
+              pipelines don't version or test.</p>
+          </div>
+          <div class="card">
+            <h3>2. Non-Determinism in Production</h3>
+            <p>The same input can legitimately produce different outputs. "It worked in my testing" no longer guarantees
+              correctness.</p>
+          </div>
+          <div class="card">
+            <h3>3. Models Are Dependencies You Don't Control</h3>
+            <p>Providers update, deprecate, and silently drift on <em>their</em> schedule—not yours.</p>
+          </div>
+          <div class="card">
+            <h3>4. Velocity + Reliability Still Required</h3>
+            <p>Teams must ship AI features continuously without new outages, security holes, or runaway cost.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="slide">
+        <h1>Code-Centric DevOps vs. AI-Embedded DevOps</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Code-Centric (Agile speed)</th>
+              <th>AI-Embedded (AI speed)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary artifact</strong></td>
+              <td>Source code, config, containers</td>
+              <td>+ Prompts, model pins, datasets, agent tools</td>
+            </tr>
+            <tr>
+              <td><strong>Determinism</strong></td>
+              <td>Same input → same output</td>
+              <td>Same input → outputs may differ</td>
+            </tr>
+            <tr>
+              <td><strong>Version control</strong></td>
+              <td>Code diffs in Git</td>
+              <td>+ Prompt / model / dataset versioning</td>
+            </tr>
+            <tr>
+              <td><strong>Testing</strong></td>
+              <td>Assert exact outputs</td>
+              <td>Eval scores &amp; semantic assertions</td>
+            </tr>
+            <tr>
+              <td><strong>Security</strong></td>
+              <td>SAST/DAST, dependency scanning</td>
+              <td>+ Prompt injection, jailbreak, model provenance</td>
+            </tr>
+            <tr>
+              <td><strong>Release risk</strong></td>
+              <td>A bad commit</td>
+              <td>+ A prompt edit or silent model drift</td>
+            </tr>
+            <tr>
+              <td><strong>Observability</strong></td>
+              <td>CPU, latency, error rate</td>
+              <td>+ Hallucination, drift, token cost</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 6 -->
+      <section class="slide">
+        <h1>The DevOps Lifecycle, Rebuilt for AI</h1>
+        <h3>Every stage gains a new artifact and a new failure mode</h3>
+        <pre><code> SOURCE CONTROL    -> prompts, model pins, datasets &amp; RAG sources are versioned artifacts
+ BUILD &amp; PACKAGE   -> model weights, embeddings &amp; prompt bundles pinned for reproducibility
+ CODE QUALITY      -> eval suites &amp; LLM-as-judge replace "does it compile + lint?"
+ UNIT TESTING      -> golden-set regression instead of exact-match asserts
+ INTEGRATION / E2E -> semantic &amp; agent-flow tests tolerate non-determinism
+ SECURITY SCAN     -> prompt injection, jailbreak &amp; red-teaming beyond SAST/DAST
+ DEPENDENCY SCAN   -> model provenance &amp; an SBOM for weights and data
+ RELEASE &amp; DEPLOY  -> prompt/model version pinning; canary on a model swap
+ OBSERVABILITY     -> hallucination rate, drift &amp; token cost as SLOs</code></pre>
+      </section>
+
+      <!-- 7 -->
+      <section class="slide">
+        <h1>The New Surface Area: What Ships With the App?</h1>
+        <h3>A prompt, a model version, and a tool config are now production artifacts</h3>
+        <ul>
+          <li><strong>Prompts are code, but they don't look like code:</strong> A one-line prompt edit can change
+            behavior as much as a major refactor—yet it rarely goes through a diff review with the same scrutiny.</li>
+          <li><strong>The model is a dependency you don't control:</strong> Provider model updates, deprecations, and
+            silent behavior drift happen on <em>their</em> release schedule, not yours.</li>
+          <li><strong>Non-determinism is now a first-class production concern:</strong> The same input can legitimately
+            produce different outputs; "it worked in my testing" means less than it used to.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>🧭 <strong>Reframe:</strong> DevOps must now track and gate prompts, model versions, and tool/agent
+            permissions with the same discipline it applies to code and infrastructure.</p>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="slide">
+        <h1>Stage 1 · Source &amp; Version Control</h1>
+        <h3>Prompts, model pins, and data are first-class, reviewed artifacts</h3>
+        <ul>
+          <li><strong>Prompts live in the repo:</strong> System prompts and templates are versioned files with owners
+            and PR review—not strings buried in app code or edited live in a CMS.</li>
+          <li><strong>Pin the model, not just the library:</strong> Record exact model IDs and snapshot versions so a
+            build is reproducible and a model swap shows up as an explicit diff.</li>
+          <li><strong>Version the data too:</strong> Datasets, few-shot examples, and RAG source snapshots are checked in
+            or content-addressed, so retrieval behavior is traceable.</li>
+          <li><strong>Meaningful diffs:</strong> A one-line prompt change should surface in review with the same
+            visibility as a code change.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>🎯 <strong>Rule:</strong> If it can change production behavior, it belongs in version control—with an owner
+            and a reviewable diff.</p>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="slide">
+        <h1>Stage 2 · Build &amp; Packaging</h1>
+        <h3>Reproducible builds when part of the "binary" is a model</h3>
+        <ul>
+          <li><strong>Pin every probabilistic input:</strong> Model version, decoding params (temperature, top-p),
+            prompt bundle, and embedding model are locked into the build manifest.</li>
+          <li><strong>Package prompts as artifacts:</strong> Prompt bundles are versioned and shipped like any other
+            build output, tagged to a specific release.</li>
+          <li><strong>Rebuild embeddings deliberately:</strong> Changing the embedding model invalidates your vector
+            index—treat re-embedding as an explicit build step, not an afterthought.</li>
+          <li><strong>Provenance baked in:</strong> Each build records exactly which model, prompts, and data snapshot it
+            was assembled from.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>⚙️ <strong>Goal:</strong> Given a release tag, you can reconstruct the exact prompts, model, and data that
+            produced its behavior.</p>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="slide">
+        <h1>Stage 3 · Code Quality</h1>
+        <h3>Prompt quality is the new code quality</h3>
+        <ul>
+          <li><strong>Eval suites are the new lint:</strong> Automated evaluators—rubric scoring, LLM-as-judge—score
+            outputs for correctness, tone, and policy adherence at PR time.</li>
+          <li><strong>Prompt linting:</strong> Static checks for missing guardrail instructions, ambiguous grounding, or
+            unbounded output length before the prompt ever reaches a model.</li>
+          <li><strong>Score thresholds gate merges:</strong> A drop in eval score fails the build, exactly like a
+            test-coverage regression.</li>
+          <li><strong>Human-reviewed diffs:</strong> Prompt and rubric changes go through code review with clear
+            owners—not ad-hoc edits in a config file.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>🎯 <strong>Equivalent:</strong> Eval suite ≈ static analysis. Prompt diff review ≈ code review. Eval score
+            regression ≈ failed CI build.</p>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="slide">
+        <h1>Stage 4 · Unit Testing</h1>
+        <h3>Golden-set regression replaces exact-match asserts</h3>
+        <ul>
+          <li><strong>Golden sets are unit tests:</strong> Curated input / expected-behavior pairs run on every prompt
+            or model change to catch regressions before release.</li>
+          <li><strong>Assert on properties, not strings:</strong> Check for required facts, correct format, refusal
+            behavior, and forbidden content instead of a byte-for-byte match.</li>
+          <li><strong>Deterministic where you can:</strong> Pin temperature to 0 and seed where supported so tests are
+            stable; tolerate variance only where it is genuinely expected.</li>
+          <li><strong>Fast and local:</strong> Run a representative golden subset on every PR and the full set nightly.
+          </li>
+        </ul>
+        <div class="highlight-box">
+          <p>⚡ <strong>Result:</strong> Regressions in model behavior get caught at PR time—not by users in production.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="slide">
+        <h1>Stage 5 · Integration &amp; E2E Testing</h1>
+        <h3>Testing whole AI flows under non-determinism</h3>
+        <ul>
+          <li><strong>Semantic assertions:</strong> Validate meaning with embeddings or an LLM judge rather than exact
+            output equality.</li>
+          <li><strong>Test the agent, not just the model:</strong> Exercise tool calls, retrieval, and multi-step
+            reasoning end to end—including failure and retry paths.</li>
+          <li><strong>Adversarial and edge inputs:</strong> Include ambiguous, empty, and hostile inputs to verify
+            graceful degradation.</li>
+          <li><strong>Flake budgets:</strong> Accept a measured variance band and alert when pass rates drift below it,
+            rather than chasing every non-deterministic blip.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>🔁 <strong>Shift:</strong> From "assert the exact output" to "assert acceptable behavior within a
+            tolerance."</p>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="slide">
+        <h1>Stage 6 · Security Scanning</h1>
+        <h3>The threat model expands beyond SAST/DAST</h3>
+        <ul>
+          <li><strong>Prompt injection &amp; jailbreaks:</strong> Treat every external input—user text, retrieved
+            documents, tool output—as adversarial and test for instruction hijacking.</li>
+          <li><strong>Output DLP:</strong> Scan model outputs for leaked secrets, PII, or other users' data, the same
+            way we scan logs and commits.</li>
+          <li><strong>Agent permission scoping:</strong> An agent with tool access is a privileged identity—apply
+            least-privilege credentials and human approval for destructive actions.</li>
+          <li><strong>Continuous red-teaming:</strong> Adversarial prompt testing becomes a recurring pipeline stage, not
+            a one-time pen test.</li>
+        </ul>
+        <div class="warning-box">
+          <p>🔒 <strong>New scans:</strong> Prompt-injection suites and red-team runs join SAST/DAST in the pipeline.</p>
+        </div>
+      </section>
+
+      <!-- 14 -->
+      <section class="slide">
+        <h1>Stage 7 · Dependency Scanning</h1>
+        <h3>The model and its data are dependencies too</h3>
+        <ul>
+          <li><strong>SBOM for models:</strong> Track model source, version, license, and fine-tuning lineage alongside
+            your library SBOM.</li>
+          <li><strong>Provenance &amp; integrity:</strong> Verify where weights came from—an unreviewed model or
+            embedding update is a supply-chain risk.</li>
+          <li><strong>Watch for drift &amp; deprecation:</strong> Alert on provider model updates and end-of-life notices
+            the way you alert on CVEs.</li>
+          <li><strong>Third-party prompt &amp; tool risk:</strong> Community prompts, plugins, and MCP tools are
+            untrusted dependencies—review before adoption.</li>
+        </ul>
+        <div class="warning-box">
+          <p>🔒 <strong>Extend the supply chain:</strong> Models, embeddings, datasets, and agent tools all need
+            provenance and review.</p>
+        </div>
+      </section>
+
+      <!-- 15 -->
+      <section class="slide">
+        <h1>Stage 8 · Release &amp; Deployment</h1>
+        <h3>Prompts and model versions ship under change control</h3>
+        <ul>
+          <li><strong>Version pinning:</strong> Releases pin an exact prompt bundle and model version—no silent "latest"
+            in production.</li>
+          <li><strong>Canary a model swap:</strong> Roll a new model or prompt to a fraction of traffic and compare eval
+            scores, cost, and latency before full rollout.</li>
+          <li><strong>Fast rollback:</strong> Roll back a prompt or model pin as quickly and confidently as a code
+            rollback.</li>
+          <li><strong>Change control for prompts:</strong> A prompt edit goes through the same review, eval gate, and
+            approval as a code deploy.</li>
+        </ul>
+        <pre><code> [Prompt/Model Change] ──> [Eval Gate] ──> Pass ──> [Canary] ──> [Full Rollout]
+                                      └──> Fail ──> [Block &amp; Review]</code></pre>
+      </section>
+
+      <!-- 16 -->
+      <section class="slide">
+        <h1>Stage 9 · Observability &amp; SLOs</h1>
+        <h3>Monitoring beyond CPU, latency, and error rate</h3>
+        <ul>
+          <li><strong>Groundedness &amp; hallucination rate:</strong> Sample production outputs against source-of-truth
+            data to measure how often the model fabricates or contradicts facts.</li>
+          <li><strong>Cost &amp; token/latency budgets:</strong> Treat token spend and response latency as SLOs—an
+            unbounded prompt or runaway agent loop is the new "resource leak."</li>
+          <li><strong>Drift detection:</strong> Watch for silent behavior change after provider model updates, prompt
+            edits, or shifts in the input distribution.</li>
+          <li><strong>Human feedback loops:</strong> Capture thumbs-up/down and escalation signals as telemetry that
+            feeds back into the eval / golden-set pipeline.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>📈 <strong>New dashboard rows:</strong> Hallucination rate, eval score trend, and cost-per-interaction—right
+            beside CPU, latency, and error rate.</p>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="slide">
+        <h1>Does This Still Move the DORA Needle?</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>DORA Metric</th>
+              <th>Risk in AI-Embedded Apps</th>
+              <th>How the rebuilt stages help</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Deployment Frequency</strong></td>
+              <td>Fear of shipping prompt/model changes</td>
+              <td>Eval gates + canary give confidence to ship often</td>
+            </tr>
+            <tr>
+              <td><strong>Lead Time for Changes</strong></td>
+              <td>Manual prompt QA is slow</td>
+              <td>Automated eval suites shorten the feedback loop</td>
+            </tr>
+            <tr>
+              <td><strong>Change Failure Rate</strong></td>
+              <td>Silent model drift breaks prod</td>
+              <td>Version pinning + golden-set regression catch it early</td>
+            </tr>
+            <tr>
+              <td><strong>MTTR</strong></td>
+              <td>AI failures are hard to see</td>
+              <td>Hallucination/drift/cost SLOs + fast prompt rollback</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box">
+          <p>📊 <strong>Bottom line:</strong> The same DORA discipline still applies—AI just adds new artifacts and
+            failure modes that each stage now has to cover.</p>
+        </div>
+      </section>
+
+      <!-- 18 -->
+      <section class="slide">
+        <h1>The Horizon: When the Product Becomes an Agent</h1>
+        <h3>Embedded agents raise the stakes for every stage</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Today: Assistive AI in the Product</h3>
+            <p>A model generates text or answers a question; a human decides what to do with it. The failure mode is
+              <strong>a bad answer</strong>.</p>
+          </div>
+          <div class="card">
+            <h3>Emerging: Agentic Products</h3>
+            <p>The product plans, calls tools, and takes actions on the user's behalf. The failure mode is <strong>a bad
+                action</strong>.</p>
+          </div>
+        </div>
+        <h3>What agentic products demand from the stages we just walked:</h3>
+        <ol>
+          <li><strong>Scoped tool permissions &amp; approval gates</strong> — security stage becomes non-negotiable.</li>
+          <li><strong>E2E tests over multi-step tool flows</strong> — integration testing must cover the whole
+            plan-act-observe loop.</li>
+          <li><strong>Action-level audit &amp; fast rollback</strong> — release and observability must trace <em>what the
+              agent did</em>, not just what it said.</li>
+        </ol>
+      </section>
+
+      <!-- 19 -->
+      <section class="slide">
+        <h1>Key Challenges, Risks &amp; Mitigation</h1>
+        <p>While AI-embedded delivery unlocks huge value, teams must manage new risks:</p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>1. Hallucinations &amp; Non-Determinism</h3>
+            <ul>
+              <li><strong>Risk:</strong> Fabricated or inconsistent output reaches users.</li>
+              <li><strong>Mitigation:</strong> Golden-set gates, semantic assertions, groundedness SLOs.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>2. Silent Model Drift</h3>
+            <ul>
+              <li><strong>Risk:</strong> A provider update changes behavior overnight.</li>
+              <li><strong>Mitigation:</strong> Model version pinning, drift detection, fast rollback.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>3. Prompt Injection &amp; Agent Misuse</h3>
+            <ul>
+              <li><strong>Risk:</strong> Untrusted input hijacks the model or its tools.</li>
+              <li><strong>Mitigation:</strong> Input sanitization, output DLP, scoped tool permissions, red-teaming.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>4. Runaway Cost</h3>
+            <ul>
+              <li><strong>Risk:</strong> Unbounded prompts or agent loops blow the budget.</li>
+              <li><strong>Mitigation:</strong> Token/latency SLOs and hard limits.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 0.75em;">
+          <h3>5. Prompt &amp; Model Change Sprawl</h3>
+          <ul>
+            <li><strong>Risk:</strong> Behavior-changing edits bypass review entirely.</li>
+            <li><strong>Mitigation:</strong> Version everything, eval-gate every change, require reviewed diffs with
+              owners.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 20 -->
+      <section class="slide">
+        <h1>Governance, Safety &amp; Responsible AI</h1>
+        <h3>Principles for shipping AI-embedded products safely</h3>
+        <ol>
+          <li><strong>Human-in-the-Loop (HITL):</strong> High-impact actions—especially agent tool calls—require
+            explicit human sign-off.</li>
+          <li><strong>Least Privilege for AI Agents:</strong> Any agent with tool access runs under scoped IAM roles and
+            access tokens.</li>
+          <li><strong>Auditability &amp; Provenance:</strong> Log prompt version, model version, and every agent action
+            with clear attribution.</li>
+          <li><strong>Prompt &amp; Model Change Control:</strong> Prompts and model pins go through review, eval gates,
+            and rollback with the same discipline as code.</li>
+          <li><strong>Eval-Gated Release:</strong> No prompt or model reaches production without passing its eval suite.
+          </li>
+        </ol>
+        <div class="warning-box">
+          <p>🛡️ <strong>Rule of Thumb:</strong> Trust AI for intelligence and speed; rely on deterministic gates for
+            verification and enforcement.</p>
+        </div>
+      </section>
+
+      <!-- 21 -->
+      <section class="slide">
+        <h1>Practical Adoption Roadmap: Crawl, Walk, Run</h1>
+        <pre><code>+-------------------------------------------------------------------------+
+|  CRAWL: Make AI Artifacts Visible                                       |
+|  • Move prompts and system messages into version control               |
+|  • Pin exact model versions—no floating "latest" in production          |
+|  • Stand up a first golden-set + eval check in CI                       |
++------------------------------------+------------------------------------+
+                                     |
++------------------------------------v------------------------------------+
+|  WALK: Gate and Observe                                                 |
+|  • Eval-score merge gates and prompt linting on every PR                 |
+|  • Prompt-injection and red-team scans in the pipeline                  |
+|  • Hallucination / drift / cost SLOs on the dashboard                   |
+|  • Canary model and prompt swaps before full rollout                    |
++------------------------------------+------------------------------------+
+                                     |
++------------------------------------v------------------------------------+
+|  RUN: Full AI-Native Delivery                                           |
+|  • Model SBOM, provenance, and supply-chain review                     |
+|  • Automated drift detection with fast prompt/model rollback            |
+|  • Scoped-permission agent flows with action-level audit               |
++-------------------------------------------------------------------------+</code></pre>
+      </section>
+
+      <!-- 22 -->
+      <section class="slide">
+        <h1>Key Takeaways</h1>
+        <ol>
+          <li><strong>The artifact changed:</strong> Products now ship prompts, models, and agents—behavior lives in
+            things Git and CI never used to see.</li>
+          <li><strong>Every stage needs a rebuild:</strong> Source control, build, code quality, testing, security,
+            dependencies, release, and observability each gain a new AI artifact and a new failure mode.</li>
+          <li><strong>Determinism gives way to evaluation:</strong> Exact-match asserts become eval scores, golden sets,
+            and semantic assertions.</li>
+          <li><strong>Verification over trust:</strong> Pair AI speed with deterministic gates, version pinning, and fast
+            rollback.</li>
+        </ol>
+        <div class="highlight-box">
+          <p>🚀 <strong>The through-line:</strong> DevOps emerged in 2015 to operate at Agile speed. Now we rebuild
+            it—stage by stage—to operate at AI speed. Pick the stage with your biggest gap and start there.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <div id="counter"></div>
+
+  <!-- Standalone deck engine — zero libraries, no build step. Slides are inline above. -->
+  <script>
+    (function () {
+      'use strict';
+
+      var deck = document.getElementById('deck');
+      var counter = document.getElementById('counter');
+      var slides = deck.querySelectorAll('.slide');
+      var total = slides.length;
+      var current = 0;
+
+      function show(n) {
+        if (!total) return;
+        current = Math.max(0, Math.min(n, total - 1));
+        for (var i = 0; i < total; i++) {
+          slides[i].classList.toggle('active', i === current);
+        }
+        counter.textContent = (current + 1) + ' / ' + total;
+        var hash = '#/' + (current + 1);
+        if (location.hash !== hash) history.replaceState(null, '', hash);
+      }
+
+      function next() { show(current + 1); }
+      function prev() { show(current - 1); }
+
+      // Scale the fixed 1280x720 stage to fit the viewport while preserving aspect.
+      function scale() {
+        var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        deck.style.transform = 'scale(' + s + ')';
+      }
+
+      document.addEventListener('keydown', function (e) {
+        switch (e.key) {
+          case 'ArrowRight':
+          case 'PageDown':
+          case ' ':
+            e.preventDefault(); next(); break;
+          case 'ArrowLeft':
+          case 'PageUp':
+            e.preventDefault(); prev(); break;
+          case 'Home':
+            e.preventDefault(); show(0); break;
+          case 'End':
+            e.preventDefault(); show(total - 1); break;
+          case 'f':
+          case 'F':
+            if (document.fullscreenElement) document.exitFullscreen();
+            else document.documentElement.requestFullscreen();
+            break;
+        }
+      });
+
+      // Click right half to advance, left half to go back.
+      document.getElementById('stage').addEventListener('click', function (e) {
+        if (e.clientX > window.innerWidth / 2) next(); else prev();
+      });
+
+      window.addEventListener('resize', scale);
+      window.addEventListener('hashchange', function () {
+        var n = parseInt((location.hash.match(/\d+/) || [])[0], 10) - 1;
+        if (!isNaN(n) && n !== current) show(n);
+      });
+
+      scale();
+      var start = parseInt((location.hash.match(/\d+/) || [1])[0], 10) - 1;
+      show(isNaN(start) ? 0 : start);
+    })();
+  </script>
+</body>
+
+</html>

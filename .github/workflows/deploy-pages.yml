@@ -30,7 +30,7 @@ jobs:
           node-version: '20'
 
       - name: Build presentation
-        run: npx --yes reveal-md presentation.md --static _site
+        run: node scripts/build.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

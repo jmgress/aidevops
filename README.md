@@ -14,8 +14,7 @@ This repository contains everything needed to deliver an engaging 35–45 minute
 
 | File | Description |
 | :--- | :--- |
-| 🌐 [`index.html`](./index.html) | **Presentation host page** powered by [reveal.js](https://revealjs.com) (loaded from CDN). Open it over a local server or via GitHub Pages. |
-| 📄 [`presentation.md`](./presentation.md) | **Main Slide Deck** in plain Markdown. Slides are separated by `---`; speaker notes follow a `Note:` line. Edit this file to change content. |
+| 🌐 [`index.html`](./index.html) | **The presentation** — a self-contained, dependency-free HTML deck (no reveal.js, no Marp). Every slide is inlined as a `<section class="slide">` and all navigation lives in the inline script. Edit this file to change content. |
 | 🎨 [`css/theme.css`](./css/theme.css) | **Dark GitHub-style theme** for the slides. Edit here to change colors, fonts, and layout helpers (`.card`, `.grid-2`, `.highlight-box`, `.warning-box`). |
 | 🎙️ [`SPEAKER_NOTES.md`](./SPEAKER_NOTES.md) | **Detailed Presenter Guide** containing slide-by-slide talking scripts, timing benchmarks, key emphasis points, and Q&A preparation. |
 | ⚙️ [`package.json`](./package.json) | NPM configuration with a local preview server script and the validation test. |
@@ -24,7 +23,7 @@ This repository contains everything needed to deliver an engaging 35–45 minute
 
 ## 🚀 Quick Start Guide
 
-> The deck loads `presentation.md` at runtime with `fetch`, so it must be served over HTTP. Opening `index.html` directly from the file system (`file://`) will not load the slides — use one of the options below.
+> The deck is fully self-contained, so you can just open `index.html` in a browser — or serve the folder over HTTP with the options below.
 
 ### 1. Preview Locally
 From the repository root, start a static server and open the printed URL:
@@ -46,13 +45,13 @@ Then browse to the local URL (e.g. `http://localhost:8080`).
 The `.nojekyll` file ensures GitHub Pages serves the files as-is without Jekyll processing.
 
 ### 3. Edit the Slides
-Edit [`presentation.md`](./presentation.md) — add or remove a slide by separating content with a line containing only `---`. Put speaker notes after a `Note:` line at the end of a slide. Refresh the browser to see changes.
+Edit [`index.html`](./index.html) — each slide is a `<section class="slide">` inside `<div id="deck">`. Add or remove a slide by adding or deleting a section. Keep speaker notes in [`SPEAKER_NOTES.md`](./SPEAKER_NOTES.md). Refresh the browser to see changes.
 
 ### 4. Validate
 ```bash
 npm test
 ```
-Checks required files exist, the deck has 18 slides, and `index.html` wires up reveal.js.
+Checks required files exist and that `index.html` is a self-contained deck with inline slides, no runtime `fetch`, and no slide framework.
 
 ---
 
@@ -92,12 +91,12 @@ The 26-slide deck explores AI in DevOps through three lenses—AI building the a
 ## 🎙️ Presenter Tips & Best Practices
 
 1. **Review Speaker Notes:** Read through [`SPEAKER_NOTES.md`](./SPEAKER_NOTES.md) beforehand for slide-by-slide scripts and estimated slide timing (1.5 to 2.5 minutes per slide).
-2. **Interactive Controls (reveal.js):**
+2. **Interactive Controls:**
    - Press **`F`** for Fullscreen mode.
-   - Press **`S`** to open Speaker View (shows notes, next slide, and a timer in a separate window).
-   - Press **`Esc`** or **`O`** for the slide overview grid.
-   - Use **`Right Arrow` / `Space`** to advance slides.
-3. **Customization:** Modify colors, fonts, and layout in [`css/theme.css`](./css/theme.css). Adjust deck behavior (size, slide numbers) in the `Reveal.initialize(...)` call in [`index.html`](./index.html).
+   - Use **`Right Arrow` / `Space` / `PageDown`** to advance, **`Left Arrow` / `PageUp`** to go back.
+   - Press **`Home`** / **`End`** to jump to the first / last slide.
+   - Click the right or left half of the slide to move forward or back.
+3. **Customization:** Modify colors, fonts, and layout in [`css/theme.css`](./css/theme.css). Adjust deck behavior (slide size, navigation) in the inline engine script in [`index.html`](./index.html).
 
 ---
 

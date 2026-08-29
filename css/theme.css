@@ -1,4 +1,4 @@
-/* Dark GitHub-style theme for reveal.js, ported from the original Marp deck. */
+/* Dark GitHub-style theme for the standalone HTML deck (no reveal.js / no Marp). */
 
 :root {
   --bg: #0d1117;
@@ -12,66 +12,101 @@
   --muted: #8b949e;
 }
 
-.reveal {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 26px;
-  color: var(--text);
-}
-
-.reveal-viewport {
-  background-color: var(--bg);
-}
-
-.reveal .slides {
-  text-align: left;
-}
-
-.reveal .slides section {
-  padding: 30px 50px;
-  height: 100%;
+* {
   box-sizing: border-box;
 }
 
-.reveal h1,
-.reveal h2,
-.reveal h3 {
-  color: var(--heading);
-  font-weight: 600;
-  text-transform: none;
-  letter-spacing: normal;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
-.reveal h1 {
+/* Stage centers and scales the fixed 1280x720 deck to fit any viewport. */
+#stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#deck {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  transform-origin: center center;
+}
+
+/* One section per slide; only the active slide is shown. */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 30px 60px;
+  font-size: 26px;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+.slide.active {
+  display: flex;
+}
+
+.slide h1,
+.slide h2,
+.slide h3 {
+  color: var(--heading);
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.slide h1 {
   font-size: 1.7em;
   border-bottom: 2px solid var(--border);
   padding-bottom: 12px;
   margin-bottom: 20px;
 }
 
-.reveal h2 {
+.slide h2 {
   font-size: 1.3em;
   color: var(--heading-2);
 }
 
-.reveal h3 {
+.slide h3 {
   font-size: 1.05em;
   color: var(--heading-3);
 }
 
-.reveal p,
-.reveal li {
+.slide p,
+.slide li {
   line-height: 1.4;
+  margin: 0.35em 0;
 }
 
-.reveal strong {
+.slide ul,
+.slide ol {
+  margin: 0.35em 0;
+  padding-left: 1.3em;
+}
+
+.slide strong {
   color: var(--strong);
 }
 
-.reveal a {
+.slide a {
   color: var(--heading-2);
 }
 
-.reveal code {
+.slide code {
   background-color: var(--bg-alt);
   color: var(--heading-3);
   padding: 2px 6px;
@@ -80,22 +115,24 @@
   font-size: 0.9em;
 }
 
-.reveal pre {
+.slide pre {
   width: 100%;
-  box-shadow: none;
+  margin: 0.4em 0;
   font-size: 0.5em;
 }
 
-.reveal pre code {
+.slide pre code {
+  display: block;
   background-color: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
-  max-height: none;
-  display: block;
+  color: var(--text);
+  white-space: pre;
+  overflow-x: auto;
 }
 
-.reveal blockquote {
+.slide blockquote {
   background-color: var(--bg-alt);
   border-left: 4px solid var(--heading);
   padding: 10px 20px;
@@ -103,17 +140,16 @@
   font-style: italic;
   border-radius: 0 8px 8px 0;
   width: 100%;
-  box-shadow: none;
 }
 
-.reveal table {
+.slide table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
   font-size: 0.8em;
 }
 
-.reveal table th {
+.slide table th {
   background-color: var(--bg-alt);
   color: var(--heading);
   border: 1px solid var(--border);
@@ -121,13 +157,13 @@
   text-align: left;
 }
 
-.reveal table td {
+.slide table td {
   border: 1px solid var(--border);
   padding: 8px 10px;
   background-color: var(--bg);
 }
 
-/* Custom layout helpers carried over from the Marp deck. */
+/* Custom layout helpers carried over from the original deck. */
 .highlight-box {
   background-color: var(--bg-alt);
   border: 1px solid var(--border);
@@ -159,6 +195,10 @@
   border-radius: 8px;
 }
 
+.card h3 {
+  margin-top: 0;
+}
+
 .badge {
   background-color: #238636;
   color: #ffffff;
@@ -169,62 +209,52 @@
 }
 
 /* Lead / title slides. */
-.reveal .slides section.lead {
+.slide.lead {
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1f242d 100%);
 }
 
-.reveal .slides section.lead h1 {
+.slide.lead h1 {
   font-size: 2.4em;
   border-bottom: none;
   color: var(--heading);
   margin-bottom: 15px;
 }
 
-.reveal .slides section.lead h2 {
+.slide.lead h2 {
   font-size: 1.2em;
   color: var(--muted);
   font-weight: 400;
 }
 
-.reveal .slides section.lead p {
+.slide.lead p {
   color: #7d8590;
 }
 
-.reveal .slide-number {
-  background-color: transparent;
-  color: #484f58;
-}
-
-/* Intro / speaker bio slide */
-.reveal .slides section.intro {
-  align-items: center;
-}
-
-.reveal .slides section.intro h1 {
+/* Intro / speaker bio slide. */
+.slide.intro h1 {
   font-size: 2em;
   border-bottom: none;
   margin-bottom: 24px;
 }
 
-.reveal .slides section.intro h2 {
+.slide.intro h2 {
   font-size: 1.4em;
   color: var(--strong);
   font-weight: 600;
   margin: 10px 0 4px;
 }
 
-.reveal .slides section.intro h3 {
+.slide.intro h3 {
   font-size: 1em;
   color: var(--muted);
   font-weight: 400;
   margin: 0 0 16px;
 }
 
-.reveal .slides section.intro p {
+.slide.intro p {
   font-size: 0.9em;
   color: var(--muted);
   margin: 6px 0;
@@ -238,4 +268,28 @@
   border: 3px solid var(--heading);
   display: block;
   margin: 0 auto 16px;
+}
+
+/* Slide counter, fixed to the viewport so it is always readable. */
+#counter {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 10;
+  font-size: 14px;
+  color: #484f58;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Loading / error message. */
+#message {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 20px;
+  text-align: center;
+  padding: 40px;
 }
