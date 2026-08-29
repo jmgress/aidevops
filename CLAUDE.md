@@ -15,9 +15,9 @@ This deck **must run as a static site on GitHub Pages** with no build step, no s
 
 | File | Purpose |
 |------|---------|
-| `index.html` | **The presentation.** Self-contained deck — all slides inlined as `<section class="slide">`, plus the inline navigation/scaling engine. Edit this to change the deck. |
-| `css/theme.css` | Dark GitHub-style theme. Custom helpers: `.card`, `.grid-2`, `.highlight-box`, `.warning-box`, `.lead`, `.intro`, `.avatar`. |
-| `SPEAKER_NOTES.md` | Full speaker notes for reference. Not rendered by the deck. |
+| `index.html` | **The presentation.** Self-contained deck — all slides inlined as `<section class="slide">` (each with a hidden `<aside class="notes">` for the presenter view), plus the inline navigation/scaling/presenter engine. Edit this to change the deck. |
+| `css/theme.css` | Dark GitHub-style theme. Custom helpers: `.card`, `.grid-2`, `.highlight-box`, `.warning-box`, `.lead`, `.intro`, `.avatar`. Hides `.slide .notes` in the main deck and styles the nav arrows, footer link, and counter. |
+| `SPEAKER_NOTES.md` | Full long-form speaker notes for reference. Not rendered by the deck. |
 
 The deck is plain HTML/CSS/JS — no reveal.js, no Marp, no build step to view it.
 
@@ -26,7 +26,13 @@ The deck is plain HTML/CSS/JS — no reveal.js, no Marp, no build step to view i
 - Each slide is a `<section class="slide">` element inside `<div id="deck">` in `index.html`.
 - The first slide uses `class="slide lead intro"` for the centered presenter-bio layout; use `class="slide lead"` for other section-title slides.
 - Layout helpers: wrap content in `<div class="card">`, `<div class="grid-2">`, `<div class="highlight-box">`, or `<div class="warning-box">`.
-- Speaker notes are **not** placed in `index.html`; keep them in `SPEAKER_NOTES.md`.
+- Concise per-slide presenter cues live in a hidden `<aside class="notes">` as the last child of each `<section class="slide">`; they are hidden in the main deck and shown in the presenter view. Keep the long-form guide in `SPEAKER_NOTES.md`.
+
+## Controls
+
+- Navigate with the arrow keys, `Space`/`PageDown`, the on-screen `‹`/`›` arrows, or by clicking the left/right half of the slide.
+- `F` toggles fullscreen; `S` opens the presenter view (a second window showing the current slide's notes, the next slide's title, and a running timer).
+- Every slide shows a footer link (`#deck-link`) back to the live deck URL.
 
 ## Running locally
 
