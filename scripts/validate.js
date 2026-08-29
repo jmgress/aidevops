@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
+const EXPECTED_PRESENTATION_TITLE = 'DevOps in the Age of AI';
+const EXPECTED_SPEAKER_NOTES_HEADER = '# Speaker Notes & Presenter Guide: DevOps in the Age of AI';
+const EXPECTED_SLIDE_COUNT = 18;
 
 console.log('Running presentation validation checks...');
 
@@ -37,17 +40,19 @@ if (!presMd.includes('marp: true')) {
   process.exit(1);
 }
 
-const slideCount = presMd.split(/\n---\n/).length;
+// Strip YAML frontmatter block (between first and second ---)
+const contentWithoutFrontmatter = presMd.replace(/^---[\s\S]*?\n(?:---|\r?\n---)(?:\r?\n|$)/, '').trim();
+const slideCount = contentWithoutFrontmatter.split(/\r?\n---\r?\n/).filter(Boolean).length;
 console.log(`✓ presentation.md has ${slideCount} slides`);
 
-if (slideCount < 10) {
-  console.error('❌ Expected at least 10 slides in presentation.md');
+if (slideCount !== EXPECTED_SLIDE_COUNT) {
+  console.error(`❌ Expected exactly ${EXPECTED_SLIDE_COUNT} slides in presentation.md, but found ${slideCount}`);
   process.exit(1);
 }
 
 // Validate speaker notes
 const speakerNotes = fs.readFileSync(path.join(root, 'SPEAKER_NOTES.md'), 'utf-8');
-if (!speakerNotes.includes('Speaker Notes & Presenter Guide')) {
+if (!speakerNotes.includes(EXPECTED_SPEAKER_NOTES_HEADER)) {
   console.error('❌ SPEAKER_NOTES.md missing header');
   process.exit(1);
 }
@@ -55,7 +60,7 @@ console.log('✓ SPEAKER_NOTES.md validated');
 
 // Validate presentation.html contains HTML output
 const presHtml = fs.readFileSync(path.join(root, 'presentation.html'), 'utf-8');
-if (!presHtml.includes('<!DOCTYPE html>') || !presHtml.includes('DevOps in the Age of AI')) {
+if (!presHtml.includes('<!DOCTYPE html>') || !presHtml.includes(EXPECTED_PRESENTATION_TITLE)) {
   console.error('❌ presentation.html missing expected HTML content');
   process.exit(1);
 }

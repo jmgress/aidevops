@@ -62,7 +62,7 @@ npm run build:pptx
 
 ## 📊 Presentation Structure & Agenda
 
-The 20-slide deck covers the complete Software Delivery Lifecycle (SDLC) and AI evolution:
+The 18-slide deck covers the complete Software Delivery Lifecycle (SDLC) and AI evolution:
 
 1. **Title Slide:** DevOps in the Age of AI
 2. **Executive Summary:** The Paradigm Shift (Manual Ops -> IaC -> AI-Augmented -> Autonomous)

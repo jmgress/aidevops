@@ -95,9 +95,9 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 * **Key Message:** Solving test suite bottlenecks through auto-generation, self-healing, and smart selection.
 * **Talking Points:**
   * "Testing is historically the biggest bottleneck in CI/CD pipelines. AI addresses three major pain points:"
-  * **1. Test Generation:** AI generates unit, integration, and contract tests directly from code changes."
-  * **2. Self-Healing Tests:** UI test automation often breaks when CSS classes or DOM structures change. AI identifies element intent and heals test selectors dynamically without failing builds."
-  * **3. Smart Test Selection:** Instead of running a 2-hour full regression suite on every commit, AI analyzes the git diff and runs only the 5% of tests impacted by the change."
+  * **1. Test Generation:** AI generates unit, integration, and contract tests directly from code changes.
+  * **2. Self-Healing Tests:** UI test automation often breaks when CSS classes or DOM structures change. AI identifies element intent and heals test selectors dynamically without failing builds.
+  * **3. Smart Test Selection:** Instead of running a 2-hour full regression suite on every commit, AI analyzes the git diff and runs only the 5% of tests impacted by the change.
 
 ---
 
@@ -173,7 +173,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
   * "To adopt AI safely, establish a clear governance framework:"
   * **Human-in-the-Loop:** Production deployments and infra modifications require human approval.
   * **Least Privilege:** AI agents must run with scoped API keys, never blanket admin rights.
-  * **Auditability:** Log every AI action, commit tag, and recommendation for compliance audit trails."
+  * **Auditability:** Log every AI action, commit tag, and recommendation for compliance audit trails.
 
 ---
 
