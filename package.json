@@ -1,0 +1,30 @@
+{
+  "name": "aidevops-presentation",
+  "version": "1.0.0",
+  "description": "DevOps in the Age of AI presentation deck and presenter guide",
+  "main": "presentation.md",
+  "scripts": {
+    "build": "npx @marp-team/marp-cli presentation.md --html -o presentation.html",
+    "build:pdf": "npx @marp-team/marp-cli presentation.md --pdf --allow-local-files -o presentation.pdf",
+    "build:pptx": "npx @marp-team/marp-cli presentation.md --pptx --allow-local-files -o presentation.pptx",
+    "start": "npx @marp-team/marp-cli presentation.md -w --html --server .",
+    "preview": "npx @marp-team/marp-cli presentation.md -p --html",
+    "test": "node scripts/validate.js"
+  },
+  "keywords": [
+    "devops",
+    "ai",
+    "aiops",
+    "marp",
+    "presentation",
+    "slides",
+    "generative-ai",
+    "copilot",
+    "agentic-devops"
+  ],
+  "author": "James Gress",
+  "license": "MIT",
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.0"
+  }
+}
