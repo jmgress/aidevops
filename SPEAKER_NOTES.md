@@ -7,8 +7,8 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 ## Presentation Overview
 
 * **Target Audience:** DevOps Engineers, Site Reliability Engineers (SREs), Software Architects, Engineering Managers, CTOs, and Platform Engineers.
-* **Total Estimated Duration:** 35 - 45 Minutes (30 minutes presentation + 10-15 minutes Q&A).
-* **Key Theme:** How Artificial Intelligence transforms DevOps from script-driven rule automation to intelligent, autonomous software delivery systems.
+* **Total Estimated Duration:** 45 - 55 Minutes (35-40 minutes presentation + 10-15 minutes Q&A).
+* **Key Theme:** How Artificial Intelligence transforms DevOps, viewed through three lenses: (1) AI as a tool for building DevOps automation, (2) AI agents embedded directly in the DevOps process, and (3) how DevOps itself must change now that our applications ship with AI embedded in them.
 
 ---
 
@@ -37,7 +37,19 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 3: Why AI in DevOps NOW?
+### Slide 3: Three Lenses on AI in DevOps
+* **Estimated Time:** 2 Minutes
+* **Key Message:** Setting up the three-part framework used for the rest of the talk.
+* **Talking Points:**
+  * "Before we go further, let's separate three conversations that usually get lumped together under 'AI in DevOps'."
+  * **Lens 1 — AI Building DevOps:** AI as a tool helping us author pipelines, IaC, and tests.
+  * **Lens 2 — AI Inside the Pipeline:** AI agents and AI-driven decisions embedded directly in the delivery process itself.
+  * **Lens 3 — DevOps for AI-Native Products:** What DevOps must become now that our shipped applications contain prompts, models, and agents.
+  * "Adopting Copilot (Lens 1) does not mean you've solved securing and operating an AI product in production (Lens 3)—these are different jobs, and we'll cover all three."
+
+---
+
+### Slide 4: Why AI in DevOps NOW?
 * **Estimated Time:** 2 Minutes
 * **Key Message:** The four forces converging to make AI in DevOps essential.
 * **Talking Points:**
@@ -49,7 +61,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 4: Traditional DevOps vs. AI-Augmented DevOps
+### Slide 5: Traditional DevOps vs. AI-Augmented DevOps
 * **Estimated Time:** 2.5 Minutes
 * **Key Message:** A direct comparison showing how AI fundamentally changes operational models.
 * **Talking Points:**
@@ -60,7 +72,15 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 5: AI Across the DevOps Lifecycle
+### Slide 6: Lens 1 – AI Building DevOps Automation (Section Marker)
+* **Estimated Time:** 0.5 Minutes
+* **Key Message:** We're now entering Lens 1: AI as a tool for authoring pipelines, IaC, and tests.
+* **Talking Points:**
+  * "Let's start with the most familiar lens: using AI as a tool to help us build the automation DevOps runs on."
+
+---
+
+### Slide 7: AI Across the DevOps Lifecycle
 * **Estimated Time:** 2 Minutes
 * **Key Message:** AI is a continuous loop across Plan, Code, Test, Release, Operate, and Secure.
 * **Talking Points:**
@@ -70,7 +90,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 6: Phase 1 – AI in Planning & Requirements
+### Slide 8: Phase 1 – AI in Planning & Requirements
 * **Estimated Time:** 2 Minutes
 * **Key Message:** Fixing requirements ambiguity before writing code.
 * **Talking Points:**
@@ -80,7 +100,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 7: Phase 2 – AI in Code & Build
+### Slide 9: Phase 2 – AI in Code & Build
 * **Estimated Time:** 2 Minutes
 * **Key Message:** Supercharging developer productivity while improving code quality.
 * **Talking Points:**
@@ -90,7 +110,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 8: Phase 3 – AI in Testing & Quality Assurance
+### Slide 10: Phase 3 – AI in Testing & Quality Assurance
 * **Estimated Time:** 2.5 Minutes
 * **Key Message:** Solving test suite bottlenecks through auto-generation, self-healing, and smart selection.
 * **Talking Points:**
@@ -101,7 +121,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 9: Phase 4 – AI in Release & Deployment
+### Slide 11: Phase 4 – AI in Release & Deployment
 * **Estimated Time:** 2 Minutes
 * **Key Message:** Reducing deployment anxiety through predictive risk scoring and auto-canary engines.
 * **Talking Points:**
@@ -111,7 +131,15 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 10: Phase 5 – AI in Operations & Observability (AIOps)
+### Slide 12: Lens 2 – DevOps Process & Agents in the Pipeline (Section Marker)
+* **Estimated Time:** 0.5 Minutes
+* **Key Message:** We're moving into Lens 2: AI agents as active participants in the DevOps process itself.
+* **Talking Points:**
+  * "So far AI has been a tool a human uses. Now let's talk about AI agents that participate directly in the pipeline—triaging incidents, gating deployments, remediating vulnerabilities."
+
+---
+
+### Slide 13: Phase 5 – AI in Operations & Observability (AIOps)
 * **Estimated Time:** 2.5 Minutes
 * **Key Message:** Turning alert fatigue into instant contextual root cause analysis.
 * **Talking Points:**
@@ -121,7 +149,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 11: Phase 6 – AI in DevSecOps & Compliance
+### Slide 14: Phase 6 – AI in DevSecOps & Compliance
 * **Estimated Time:** 2 Minutes
 * **Key Message:** Continuous security remediation and real-time compliance enforcement.
 * **Talking Points:**
@@ -132,7 +160,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 12: The Next Horizon – Agentic AI & Autonomous DevOps
+### Slide 15: The Next Horizon – Agentic AI & Autonomous DevOps
 * **Estimated Time:** 2.5 Minutes
 * **Key Message:** Transitioning from Copilots to Autonomous AI Agents.
 * **Talking Points:**
@@ -143,7 +171,7 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 13: Quantifiable Business Impact & DORA Metrics
+### Slide 16: Quantifiable Business Impact & DORA Metrics
 * **Estimated Time:** 2 Minutes
 * **Key Message:** Connecting AI capabilities directly to business ROI and DORA metrics.
 * **Talking Points:**
@@ -155,52 +183,111 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 
 ---
 
-### Slide 14: Key Challenges, Risks & Mitigation
+### Slide 17: Lens 3 – DevOps for AI-Embedded Applications (Section Marker)
+* **Estimated Time:** 1 Minute
+* **Key Message:** The pivot slide of the talk—our *products*, not just our pipelines, now contain AI.
+* **Talking Points:**
+  * "The first two lenses were about using AI to run DevOps better. Now flip the question: our products ship with LLMs, prompts, and agents embedded in them."
+  * "That changes what 'quality,' 'security,' and 'operations' mean for the team supporting them—even if that team never touches an AI-authored pipeline."
+
+---
+
+### Slide 18: The New Surface Area – What Ships With the App?
+* **Estimated Time:** 2 Minutes
+* **Key Message:** Prompts, model versions, and agent tool configs are now production artifacts.
+* **Talking Points:**
+  * "Prompts are code, but they don't look like code—a one-line prompt edit can change behavior as much as a major refactor, yet rarely gets the same review rigor."
+  * "The model itself is a dependency you don't control: providers deprecate and silently update models on their schedule, not yours."
+  * "Non-determinism is now a first-class production concern—the same input can legitimately produce different outputs."
+  * "Our existing pipeline artifacts were code, containers, and config. Now add prompt templates, model version pins, retrieval sources, and agent tool permissions—each can change behavior without a traditional code change."
+
+---
+
+### Slide 19: Prompt Quality Is the New Code Quality
 * **Estimated Time:** 2.5 Minutes
-* **Key Message:** Honest discussion of risks: hallucinations, privacy, over-reliance, tool sprawl.
+* **Key Message:** The direct answer to "what's the equivalent of code quality for prompts?"
+* **Talking Points:**
+  * "Treat prompts as versioned artifacts with owners and PR review, not inline strings buried in application code."
+  * "Maintain golden-set regression tests—curated input/output pairs that run on every prompt or model change, exactly like a unit test suite."
+  * "Use LLM-as-judge or rubric scoring as an automated evaluator at PR time, similar to a linter or static analysis gate, with a required score threshold to merge."
+  * "Prompt linting can catch missing guardrail instructions or unbounded output length before a prompt ever reaches a model."
+  * "The mental model: eval suite ≈ test suite; prompt diff review ≈ code review; eval score regression ≈ failed CI build."
+
+---
+
+### Slide 20: Securing AI-Embedded Applications
+* **Estimated Time:** 2.5 Minutes
+* **Key Message:** The AI threat model extends beyond traditional AppSec.
+* **Talking Points:**
+  * "Prompt injection and jailbreaks: untrusted content—user input, retrieved documents, tool outputs—can hijack model instructions. Treat every external input as adversarial."
+  * "Data leakage: models can regurgitate secrets, PII, or other users' data from context; outputs need the same DLP scanning we apply to logs and commits."
+  * "Agent permission scoping: an AI agent with tool access is a new privileged identity—apply least-privilege, scoped credentials, and human approval for destructive actions."
+  * "Model and supply-chain provenance: track model source, version, and fine-tuning lineage like an SBOM."
+  * "Continuous red-teaming becomes a recurring pipeline stage, not a one-time pen test."
+
+---
+
+### Slide 21: Observability & SLOs for AI Systems
+* **Estimated Time:** 2.5 Minutes
+* **Key Message:** Monitoring must extend beyond CPU, latency, and error rate.
+* **Talking Points:**
+  * "Groundedness and hallucination rate: sample production outputs against source-of-truth data to measure fabrication."
+  * "Cost and token/latency budgets: treat token spend and response latency as SLOs—an unbounded prompt or runaway agent loop is the new resource leak."
+  * "Drift detection: watch for silent behavior changes after provider model updates or prompt edits."
+  * "Human feedback loops: capture thumbs-up/down and escalation signals as telemetry, feeding the eval/golden-set pipeline."
+  * "Fast rollback: pin and roll back prompt/model versions with the same speed and confidence as a code rollback."
+
+---
+
+### Slide 22: Key Challenges, Risks & Mitigation
+* **Estimated Time:** 2.5 Minutes
+* **Key Message:** Honest discussion of risks across all three lenses: hallucinations, privacy, over-reliance, tool sprawl, and AI-native attack surface.
 * **Talking Points:**
   * "We must address the challenges candidly:"
   * **1. Hallucinations:** AI can produce syntactically valid but logically incorrect code. *Mitigation:* Never deploy AI code without passing deterministic CI test gates.
   * **2. Data Privacy:** Risk of proprietary code leaking into public model training. *Mitigation:* Use enterprise AI agreements, local models, or privacy-compliant endpoints.
   * **3. Skill Atrophy:** Over-reliance on AI can erode foundational engineering skills. *Mitigation:* Maintain rigorous code review standards and architecture mentoring.
+  * **4. Tool Sprawl:** Fragmented point solutions increase integration cost. *Mitigation:* Consolidate on a unified developer platform.
+  * **5. Prompt Injection & AI-Native Attack Surface (Lens 3):** Untrusted inputs hijacking embedded model/agent behavior. *Mitigation:* Input sanitization, output DLP scanning, scoped agent permissions, continuous red-teaming.
 
 ---
 
-### Slide 15: Governance, Safety & Responsible AI Framework
+### Slide 23: Governance, Safety & Responsible AI Framework
 * **Estimated Time:** 2 Minutes
-* **Key Message:** Establishing guardrails for safe AI execution in production.
+* **Key Message:** Establishing guardrails for safe AI execution in production, across all three lenses.
 * **Talking Points:**
   * "To adopt AI safely, establish a clear governance framework:"
   * **Human-in-the-Loop:** Production deployments and infra modifications require human approval.
   * **Least Privilege:** AI agents must run with scoped API keys, never blanket admin rights.
   * **Auditability:** Log every AI action, commit tag, and recommendation for compliance audit trails.
+  * **Prompt & Model Change Control (Lens 3):** Prompts and model version pins go through the same review, eval-gate, and rollback discipline as code.
 
 ---
 
-### Slide 16: Practical Adoption Roadmap – Crawl, Walk, Run
+### Slide 24: Practical Adoption Roadmap – Crawl, Walk, Run
 * **Estimated Time:** 2 Minutes
-* **Key Message:** A structured 3-phase adoption blueprint.
+* **Key Message:** A structured 3-phase adoption blueprint spanning all three lenses.
 * **Talking Points:**
   * "How do you implement this in your organization? Don't attempt everything on day one."
   * **Crawl Phase:** Focus on developer enablement—roll out Copilot, automated PR summaries, and static log analysis.
-  * **Walk Phase:** Expand to quality and operations—adopt AI test generation, deployment risk scoring, and AIOps event correlation.
-  * **Run Phase:** Embrace agentic workflows—autonomous vulnerability patching, self-healing infra runbooks, and pipeline auto-tuning.
+  * **Walk Phase:** Expand to quality and operations—adopt AI test generation, deployment risk scoring, AIOps event correlation, and stand up a first prompt eval/golden-set pipeline (Lens 3).
+  * **Run Phase:** Embrace agentic workflows—autonomous vulnerability patching, self-healing infra runbooks, pipeline auto-tuning, plus full Lens 3 maturity: prompt/model change control, continuous AI red-teaming, and hallucination/cost SLOs in production dashboards.
 
 ---
 
-### Slide 17: Key Takeaways
+### Slide 25: Key Takeaways
 * **Estimated Time:** 1.5 Minutes
-* **Key Message:** Summarizing core lessons.
+* **Key Message:** Summarizing core lessons through the three-lens framing.
 * **Talking Points:**
   * "To wrap up our discussion:"
-  * 1. DevOps is shifting from static rules to intelligent autonomy.
-  * 2. Apply AI across the full SDLC loop, not just in code generation.
-  * 3. Always pair AI speed with deterministic CI/CD verification guardrails.
-  * 4. AI elevates human engineers to focus on architecture, creativity, and business value.
+  * 1. Lens 1 — AI builds our automation: pipelines, IaC, and tests shift from manual scripting to intent-driven generation.
+  * 2. Lens 2 — AI joins the pipeline: agents move from suggesting changes to participating in review, deployment, and incident response, under human governance.
+  * 3. Lens 3 — DevOps for AI-native apps: prompts and model versions need eval-gated review, AI-specific security, and hallucination/cost SLOs.
+  * 4. Across all three lenses: pair AI speed with deterministic verification guardrails.
 
 ---
 
-### Slide 18: Q&A & Discussion
+### Slide 26: Q&A & Discussion
 * **Estimated Time:** 10 - 15 Minutes
 * **Key Message:** Engaging the audience and answering questions.
 
@@ -220,10 +307,16 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 ### Q4: How do we protect proprietary code and sensitive infrastructure data when using LLMs?
 **Answer:** Use enterprise-grade AI subscriptions that guarantee zero model retraining on your code/telemetry data. Implement local data scrubbing tools to strip PII and API keys before sending prompts, or deploy open-weight models (like Llama 3 or DeepSeek) within your private VPC / air-gapped infrastructure.
 
+### Q5: What is the equivalent of "code quality" or "code review" for prompts?
+**Answer:** A prompt evaluation pipeline. Version-control prompts like code, require PR review for changes, and run them against a golden set of representative inputs with expected/acceptable outputs on every change. Score results automatically (often with an LLM-as-judge or rubric scorer) and require a passing threshold to merge—exactly like a test-coverage gate blocking a build.
+
+### Q6: How is securing an AI-embedded application different from traditional application security?
+**Answer:** Traditional AppSec (SAST/DAST, dependency scanning) still applies, but it doesn't catch prompt injection from untrusted content, data leakage through model outputs, or an AI agent misusing its own tool permissions. Treat prompts and retrieved content as untrusted input, scope agent tool access with least privilege, add output DLP scanning, and run continuous adversarial (red-team) testing against the model layer.
+
 ---
 
 ## Presenter Tips for Delivery
 
 1. **Pacing:** Keep a steady pace (~1.5 to 2 minutes per slide). Use the diagrams and tables as visual anchors rather than reading text verbatim.
-2. **Demos:** If time permits, run a live demo of an AI tool in action (e.g., GitHub Copilot opening a PR, or an AIOps log diagnosis) between Slide 8 and Slide 10.
-3. **Audience Engagement:** Ask for a show of hands early on (e.g., "How many of you are currently using AI coding tools in production?").
+2. **Demos:** If time permits, run a live demo of an AI tool in action (e.g., GitHub Copilot opening a PR, or an AIOps log diagnosis) during the Lens 1/Lens 2 sections.
+3. **Audience Engagement:** Ask for a show of hands early on (e.g., "How many of you are currently shipping a product with an LLM or AI agent embedded in it?")—it typically reframes the room for Lens 3.

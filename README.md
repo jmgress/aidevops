@@ -58,26 +58,34 @@ Checks required files exist, the deck has 18 slides, and `index.html` wires up r
 
 ## 📊 Presentation Structure & Agenda
 
-The 18-slide deck covers the complete Software Delivery Lifecycle (SDLC) and AI evolution:
+The 26-slide deck explores AI in DevOps through three lenses—AI building the automation, AI embedded in the pipeline, and DevOps for AI-native applications:
 
 1. **Title Slide:** DevOps in the Age of AI
 2. **Executive Summary:** The Paradigm Shift (Manual Ops -> IaC -> AI-Augmented -> Autonomous)
-3. **Why AI in DevOps NOW?** (Data explosion, GenAI, system complexity, velocity demand)
-4. **Traditional DevOps vs. AI-Augmented DevOps:** Side-by-side comparison table
-5. **AI Across the DevOps Lifecycle:** High-level infinity loop architecture
-6. **Phase 1: Plan & Design:** AI-driven user stories, specs & architecture risk mapping
-7. **Phase 2: Code & Build:** AI coding assistants, automated PR summaries & tech debt refactoring
-8. **Phase 3: Test & QA:** Test generation, self-healing UI tests & smart impact-based test selection
-9. **Phase 4: Release & Deploy:** Deployment risk scoring, auto-canary & predictive rollbacks
-10. **Phase 5: Operate & Monitor:** AIOps, event correlation, automated Root Cause Analysis (RCA) & MTTR reduction
-11. **Phase 6: Secure & Comply:** DevSecOps auto-remediation & continuous compliance mapping
-12. **The Next Horizon:** Agentic AI & Autonomous DevOps (Copilots vs. Autonomous Agents)
-13. **Quantifiable Business Impact:** DORA Metrics transformation (Deployment frequency, Lead time, MTTR, CFR)
-14. **Key Challenges & Risks:** Hallucinations, privacy/IP, over-reliance, tool sprawl & mitigations
-15. **Governance & Responsible AI:** Human-in-the-loop, least privilege, auditability & sandboxing
-16. **Adoption Roadmap:** Crawl, Walk, Run implementation strategy
-17. **Key Takeaways:** Core principles for engineering leaders
-18. **Q&A & Discussion:** Closing remarks & audience interaction
+3. **Three Lenses on AI in DevOps:** Framing the talk around three distinct lenses
+4. **Why AI in DevOps NOW?** (Data explosion, GenAI, system complexity, velocity demand)
+5. **Traditional DevOps vs. AI-Augmented DevOps:** Side-by-side comparison table
+6. **Lens 1 — AI Building DevOps Automation:** Section marker
+7. **AI Across the DevOps Lifecycle:** High-level infinity loop architecture
+8. **Phase 1: Plan & Design:** AI-driven user stories, specs & architecture risk mapping
+9. **Phase 2: Code & Build:** AI coding assistants, automated PR summaries & tech debt refactoring
+10. **Phase 3: Test & QA:** Test generation, self-healing UI tests & smart impact-based test selection
+11. **Phase 4: Release & Deploy:** Deployment risk scoring, auto-canary & predictive rollbacks
+12. **Lens 2 — DevOps Process & Agents in the Pipeline:** Section marker
+13. **Phase 5: Operate & Monitor:** AIOps, event correlation, automated Root Cause Analysis (RCA) & MTTR reduction
+14. **Phase 6: Secure & Comply:** DevSecOps auto-remediation & continuous compliance mapping
+15. **The Next Horizon:** Agentic AI & Autonomous DevOps (Copilots vs. Autonomous Agents)
+16. **Quantifiable Business Impact:** DORA Metrics transformation (Deployment frequency, Lead time, MTTR, CFR)
+17. **Lens 3 — DevOps for AI-Embedded Applications:** Section marker
+18. **The New Surface Area:** Prompts, model versions & agent tool configs as production artifacts
+19. **Prompt Quality Is the New Code Quality:** Prompt version control, golden-set evals & LLM-as-judge
+20. **Securing AI-Embedded Applications:** Prompt injection, data leakage, agent permission scoping & red-teaming
+21. **Observability & SLOs for AI Systems:** Hallucination rate, drift detection & cost/latency budgets
+22. **Key Challenges & Risks:** Hallucinations, privacy/IP, over-reliance, tool sprawl, prompt injection & mitigations
+23. **Governance & Responsible AI:** Human-in-the-loop, least privilege, auditability, sandboxing & prompt/model change control
+24. **Adoption Roadmap:** Crawl, Walk, Run implementation strategy across all three lenses
+25. **Key Takeaways:** Core principles for engineering leaders, organized by lens
+26. **Q&A & Discussion:** Closing remarks & audience interaction
 
 ---
 
