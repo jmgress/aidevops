@@ -1,5 +1,6 @@
 node_modules/
 _site/
+export/
 .DS_Store
 *.log
 /tmp/
