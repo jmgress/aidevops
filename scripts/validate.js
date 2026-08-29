@@ -11,6 +11,7 @@ console.log('Running presentation validation checks...');
 // Check required files
 const requiredFiles = [
   'README.md',
+  'LICENSE',
   'presentation.md',
   'presentation.html',
   'SPEAKER_NOTES.md',
