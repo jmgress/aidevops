@@ -35,12 +35,12 @@ Welcome everyone. Today we are diving into one of the most transformative shifts
 
 1. **Phase 1: Manual Operations** (Siloed teams, ticket-driven deployments, days/weeks lead time)
 2. **Phase 2: Infrastructure as Code & CI/CD** (Automated build pipelines, programmatic infra, hours lead time)
-3. **Phase 3: DevOps at the Speed of Agile** (Pipelines, test gates, and IaC tuned to move *deterministic code* from commit to production fast and safely)
-4. **Phase 4: DevOps at the Speed of AI** (The product itself now ships prompts, models, and agents—*probabilistic* artifacts our pipelines were never designed to handle)
+3. **Phase 3: DevOps at the Speed of Agile (2015)** (DevOps emerged to match Agile velocity—pipelines, test gates, and IaC tuned to move *deterministic code* from commit to production fast and safely)
+4. **Phase 4: DevOps at the Speed of AI** (The product itself now ships prompts, models, and agents—*probabilistic* artifacts our 2015-era pipelines were never designed to handle)
 
 <div class="highlight-box">
 
-💡 **Key Premise:** We built DevOps to keep up with Agile. Now the thing we ship has changed—so DevOps has to be rebuilt for the speed *and* the non-determinism of AI.
+💡 **Key Premise:** DevOps emerged in 2015 to operate at Agile speed. Now the thing we ship has changed—so DevOps must be rebuilt to operate at AI speed, with both velocity *and* non-determinism in scope.
 </div>
 
 Note:
@@ -52,13 +52,13 @@ The shift now isn't that we use AI to build pipelines. It's that the application
 
 # From the Speed of Agile to the Speed of AI
 
-### Why our DevOps toolchain suddenly feels inadequate
+### Why the 2015-era DevOps toolchain suddenly feels inadequate
 
 <div class="grid-2">
 <div class="card">
 
-### Built for Agile
-We designed CI/CD, IaC, and test gates to move **deterministic code** from commit to production fast and safely. Same input, same output—every time.
+### Built for Agile (2015)
+DevOps emerged to move **deterministic code** from commit to production fast and safely. We designed CI/CD, IaC, and test gates for Agile's velocity: same input, same output—every time.
 </div>
 
 <div class="card">
@@ -76,7 +76,7 @@ A prompt edit or a model swap can alter production behavior as much as a code ch
 
 <div class="highlight-box">
 
-💡 **Key Premise:** We built DevOps at the speed of Agile. AI-embedded products force us to rebuild every DevOps stage for the speed—and the non-determinism—of AI.
+💡 **Key Premise:** DevOps emerged in 2015 at the speed of Agile. AI-embedded products force us to rebuild every DevOps stage to operate at AI speed—with the velocity and non-determinism AI demands.
 </div>
 
 Note:
@@ -517,7 +517,7 @@ Run is full AI-native delivery: model SBOMs, automated drift detection with fast
 
 <div class="highlight-box">
 
-🚀 **The through-line:** We built DevOps at the speed of Agile. Now we rebuild it—stage by stage—for the speed of AI. Pick the stage with your biggest gap and start there.
+🚀 **The through-line:** DevOps emerged in 2015 to operate at Agile speed. Now we rebuild it—stage by stage—to operate at AI speed. Pick the stage with your biggest gap and start there.
 </div>
 
 Note:
