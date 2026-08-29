@@ -10,6 +10,18 @@ Welcome to the **Speaker Notes & Presenter Guide** for the *DevOps in the Age of
 * **Total Estimated Duration:** 45 - 55 Minutes (35-40 minutes presentation + 10-15 minutes Q&A).
 * **Key Theme:** How Artificial Intelligence transforms DevOps, viewed through three lenses: (1) AI as a tool for building DevOps automation, (2) AI agents embedded directly in the DevOps process, and (3) how DevOps itself must change now that our applications ship with AI embedded in them.
 
+### Narrative Arc (how to deliver this deck)
+
+The deck is built as a **story in four acts** around a recurring protagonist. Anchor every section back to her:
+
+* **The protagonist:** **Maya**, an engineering lead whose team ships **"Aria,"** an AI customer-support assistant.
+* **Act I — The 3AM Page (cold open):** Aria silently starts giving customers the wrong refund policy. Dashboards are green, Git shows no commit or deploy — the model provider updated the model overnight. The team can't see it, test it, or roll it back. This is the emotional hook; land it before any theory.
+* **Act II — The Blind Pipeline:** Use the "what just happened", "why now", comparison-table, and "new surface area" slides to explain *why the Agile-era toolchain couldn't catch Aria's failure*. The artifact changed; the pipeline never saw it.
+* **Act III — The Rebuild:** The nine lifecycle stages are the transformation. Each stage carries an "Aria" callout showing how it would have caught or prevented the 3AM page. Keep pointing back to that callout.
+* **Act IV — The New Normal:** DORA, the agentic horizon, risks, governance, and the crawl/walk/run roadmap are the resolution. Close by looping back: months later the provider ships another silent update, and this time the dependency scan, golden set, and canary catch it — Maya reads about it on a dashboard, not a pager.
+
+**Delivery tip:** whenever a slide shows the purple "Aria" callout, slow down and tell that beat of the story in your own words — that thread is what makes the technical content stick.
+
 ---
 
 ## Slide-by-Slide Talking Script
