@@ -31,37 +31,11 @@
 
       <!-- 2 -->
       <section class="slide">
-        <h1>Executive Summary: The Paradigm Shift</h1>
-        <h3>The Evolution of Software Delivery</h3>
-        <ol>
-          <li><strong>Phase 1: Manual Operations</strong> (Siloed teams, ticket-driven deployments, days/weeks lead
-            time)</li>
-          <li><strong>Phase 2: Infrastructure as Code &amp; CI/CD</strong> (Automated build pipelines, programmatic
-            infra, hours lead time)</li>
-          <li><strong>Phase 3: DevOps at the Speed of Agile (2015)</strong> (DevOps emerged to match Agile
-            velocity—pipelines, test gates, and IaC tuned to move <em>deterministic code</em> from commit to production
-            fast and safely)</li>
-          <li><strong>Phase 4: DevOps at the Speed of AI</strong> (The product itself now ships prompts, models, and
-            agents—<em>probabilistic</em> artifacts our 2015-era pipelines were never designed to handle)</li>
-        </ol>
-        <div class="highlight-box">
-          <p>💡 <strong>Key Premise:</strong> DevOps emerged in 2015 to operate at Agile speed. Now the thing we ship has
-            changed—so DevOps must be rebuilt to operate at AI speed, with both velocity <em>and</em> non-determinism in
-            scope.</p>
-        </div>
-        <aside class="notes">
-          <p>To set the baseline: DevOps has always been about reducing friction between development and operations. We moved from manual tickets to automated scripts and Infrastructure as Code, and we tuned all of it for the speed of Agile—fast, safe releases of deterministic code.</p>
-          <p>The shift now isn't that we use AI to build pipelines. It's that the applications we ship have AI embedded in them. That changes the artifact, and it forces us to rebuild every DevOps stage.</p>
-        </aside>
-      </section>
-
-      <!-- 3 -->
-      <section class="slide">
         <h1>From the Speed of Agile to the Speed of AI</h1>
-        <h3>Why the 2015-era DevOps toolchain suddenly feels inadequate</h3>
+        <h3>Why the Agile-era DevOps toolchain suddenly feels inadequate</h3>
         <div class="grid-2">
           <div class="card">
-            <h3>Built for Agile (2015)</h3>
+            <h3>Built for Agile</h3>
             <p>DevOps emerged to move <strong>deterministic code</strong> from commit to production fast and safely. We
               designed CI/CD, IaC, and test gates for Agile's velocity: same input, same output—every time.</p>
           </div>
@@ -77,7 +51,7 @@
             build, test, security, and release were never designed to <em>see</em> them.</p>
         </div>
         <div class="highlight-box">
-          <p>💡 <strong>Key Premise:</strong> DevOps emerged in 2015 at the speed of Agile. AI-embedded products force us
+          <p>💡 <strong>Key Premise:</strong> DevOps matured through the 2010s at the speed of Agile. AI-embedded products force us
             to rebuild every DevOps stage to operate at AI speed—with the velocity and non-determinism AI demands.</p>
         </div>
         <aside class="notes">
@@ -86,7 +60,7 @@
         </aside>
       </section>
 
-      <!-- 4 -->
+      <!-- 3 -->
       <section class="slide">
         <h1>Why Rebuild DevOps for AI Now?</h1>
         <h3>Four forces making AI-embedded delivery a first-class DevOps problem</h3>
@@ -115,7 +89,7 @@
         </aside>
       </section>
 
-      <!-- 5 -->
+      <!-- 4 -->
       <section class="slide">
         <h1>Code-Centric DevOps vs. AI-Embedded DevOps</h1>
         <table>
@@ -169,7 +143,7 @@
         </aside>
       </section>
 
-      <!-- 6 -->
+      <!-- 5 -->
       <section class="slide">
         <h1>The DevOps Lifecycle, Rebuilt for AI</h1>
         <h3>Every stage gains a new artifact and a new failure mode</h3>
@@ -187,7 +161,7 @@
         </aside>
       </section>
 
-      <!-- 7 -->
+      <!-- 6 -->
       <section class="slide">
         <h1>The New Surface Area: What Ships With the App?</h1>
         <h3>A prompt, a model version, and a tool config are now production artifacts</h3>
@@ -208,7 +182,7 @@
         </aside>
       </section>
 
-      <!-- 8 -->
+      <!-- 7 -->
       <section class="slide">
         <h1>Stage 1 · Source &amp; Version Control</h1>
         <h3>Prompts, model pins, and data are first-class, reviewed artifacts</h3>
@@ -231,7 +205,7 @@
         </aside>
       </section>
 
-      <!-- 9 -->
+      <!-- 8 -->
       <section class="slide">
         <h1>Stage 2 · Build &amp; Packaging</h1>
         <h3>Reproducible builds when part of the "binary" is a model</h3>
@@ -254,7 +228,7 @@
         </aside>
       </section>
 
-      <!-- 10 -->
+      <!-- 9 -->
       <section class="slide">
         <h1>Stage 3 · Code Quality</h1>
         <h3>Prompt quality is the new code quality</h3>
@@ -277,7 +251,7 @@
         </aside>
       </section>
 
-      <!-- 11 -->
+      <!-- 10 -->
       <section class="slide">
         <h1>Stage 4 · Unit Testing</h1>
         <h3>Golden-set regression replaces exact-match asserts</h3>
@@ -300,7 +274,7 @@
         </aside>
       </section>
 
-      <!-- 12 -->
+      <!-- 11 -->
       <section class="slide">
         <h1>Stage 5 · Integration &amp; E2E Testing</h1>
         <h3>Testing whole AI flows under non-determinism</h3>
@@ -323,7 +297,7 @@
         </aside>
       </section>
 
-      <!-- 13 -->
+      <!-- 12 -->
       <section class="slide">
         <h1>Stage 6 · Security Scanning</h1>
         <h3>The threat model expands beyond SAST/DAST</h3>
@@ -345,7 +319,7 @@
         </aside>
       </section>
 
-      <!-- 14 -->
+      <!-- 13 -->
       <section class="slide">
         <h1>Stage 7 · Dependency Scanning</h1>
         <h3>The model and its data are dependencies too</h3>
@@ -368,7 +342,7 @@
         </aside>
       </section>
 
-      <!-- 15 -->
+      <!-- 14 -->
       <section class="slide">
         <h1>Stage 8 · Release &amp; Deployment</h1>
         <h3>Prompts and model versions ship under change control</h3>
@@ -389,7 +363,7 @@
         </aside>
       </section>
 
-      <!-- 16 -->
+      <!-- 15 -->
       <section class="slide">
         <h1>Stage 9 · Observability &amp; SLOs</h1>
         <h3>Monitoring beyond CPU, latency, and error rate</h3>
@@ -412,7 +386,7 @@
         </aside>
       </section>
 
-      <!-- 17 -->
+      <!-- 16 -->
       <section class="slide">
         <h1>Does This Still Move the DORA Needle?</h1>
         <table>
@@ -455,7 +429,7 @@
         </aside>
       </section>
 
-      <!-- 18 -->
+      <!-- 17 -->
       <section class="slide">
         <h1>The Horizon: When the Product Becomes an Agent</h1>
         <h3>Embedded agents raise the stakes for every stage</h3>
@@ -484,7 +458,7 @@
         </aside>
       </section>
 
-      <!-- 19 -->
+      <!-- 18 -->
       <section class="slide">
         <h1>Key Challenges, Risks &amp; Mitigation</h1>
         <p>While AI-embedded delivery unlocks huge value, teams must manage new risks:</p>
@@ -531,7 +505,7 @@
         </aside>
       </section>
 
-      <!-- 20 -->
+      <!-- 19 -->
       <section class="slide">
         <h1>Governance, Safety &amp; Responsible AI</h1>
         <h3>Principles for shipping AI-embedded products safely</h3>
@@ -556,7 +530,7 @@
         </aside>
       </section>
 
-      <!-- 21 -->
+      <!-- 20 -->
       <section class="slide">
         <h1>Practical Adoption Roadmap: Crawl, Walk, Run</h1>
         <pre><code>+-------------------------------------------------------------------------+
@@ -585,7 +559,7 @@
         </aside>
       </section>
 
-      <!-- 22 -->
+      <!-- 21 -->
       <section class="slide">
         <h1>Key Takeaways</h1>
         <ol>
@@ -599,7 +573,7 @@
             rollback.</li>
         </ol>
         <div class="highlight-box">
-          <p>🚀 <strong>The through-line:</strong> DevOps emerged in 2015 to operate at Agile speed. Now we rebuild
+          <p>🚀 <strong>The through-line:</strong> DevOps was coined in 2009 and matured through the 2010s to operate at Agile speed. Now we rebuild
             it—stage by stage—to operate at AI speed. Pick the stage with your biggest gap and start there.</p>
         </div>
         <aside class="notes">
