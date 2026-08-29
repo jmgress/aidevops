@@ -51,8 +51,9 @@
             build, test, security, and release were never designed to <em>see</em> them.</p>
         </div>
         <div class="highlight-box">
-          <p>💡 <strong>Key Premise:</strong> DevOps matured through the 2010s at the speed of Agile. AI-embedded products force us
-            to rebuild every DevOps stage to operate at AI speed—with the velocity and non-determinism AI demands.</p>
+          <p>💡 <strong>The blind spot is already open:</strong> Every prompt tweak and model update is reaching your
+            users <em>right now</em>—through a pipeline that can't see it, test it, or roll it back. DevOps built for
+            Agile speed has to be rebuilt for AI speed before that gap becomes your next incident.</p>
         </div>
         <aside class="notes">
           <p>This is the spine of the whole talk. When we built DevOps, we built it for Agile: get deterministic code through the pipeline quickly and safely. Every gate we have—diffs, tests, scans, canaries—assumes the same input gives the same output.</p>
@@ -63,7 +64,7 @@
       <!-- 3 -->
       <section class="slide">
         <h1>Why Rebuild DevOps for AI Now?</h1>
-        <h3>Four forces making AI-embedded delivery a first-class DevOps problem</h3>
+        <h3>Four forces already making AI-embedded delivery a first-class DevOps problem</h3>
         <div class="grid-2">
           <div class="card">
             <h3>1. AI Is Now in the Product</h3>
@@ -83,6 +84,11 @@
             <h3>4. Velocity + Reliability Still Required</h3>
             <p>Teams must ship AI features continuously without new outages, security holes, or runaway cost.</p>
           </div>
+        </div>
+        <div class="warning-box">
+          <p>⏰ <strong>The cost of waiting:</strong> A silent model update, an unreviewed prompt, or an over-permissioned
+            agent can degrade quality, leak data, or blow your budget—<em>today</em>, with no commit and no alert. Every
+            week you wait, more AI behavior ships that you can't see or undo.</p>
         </div>
         <aside class="notes">
           <p>Why now? Because the AI moved from our toolchain into the product. 1) The thing that determines quality—the prompt and the model—now ships to customers. 2) Behavior is non-deterministic, so old “assert exact output” testing breaks. 3) The model is an external dependency that can change without a commit from us. 4) And none of the old expectations went away—we still have to be fast and reliable.</p>
@@ -155,8 +161,13 @@
  SECURITY SCAN     -> prompt injection, jailbreak &amp; red-teaming beyond SAST/DAST
  DEPENDENCY SCAN   -> model provenance &amp; an SBOM for weights and data
  RELEASE &amp; DEPLOY  -> prompt/model version pinning; canary on a model swap
- OBSERVABILITY     -> hallucination rate, drift &amp; token cost as SLOs</code></pre>
-        <aside class="notes">
+ OBSERVABILITY     -> hallucination rate, drift &amp; token cost as SLOs</code></pre>        <p class="tools">
+          <strong style="color:var(--heading-3)">Tooling adoption:</strong>
+          <span class="tool"><span class="dot early"></span> Early</span>
+          <span class="tool"><span class="dot emerging"></span> Emerging</span>
+          <span class="tool"><span class="dot growing"></span> Growing</span>
+          <span class="tool"><span class="dot mainstream"></span> Mainstream</span>
+        </p>        <aside class="notes">
           <p>Here's the roadmap for the next section. Take the DevOps lifecycle you already run, and overlay what changes when the product ships AI. Notice the pattern in every line: the left side is the familiar stage, the right side is the new AI artifact and the new way it can fail. We'll take these one at a time.</p>
         </aside>
       </section>
@@ -200,6 +211,15 @@
           <p>🎯 <strong>Rule:</strong> If it can change production behavior, it belongs in version control—with an owner
             and a reviewable diff.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">Git + Git LFS</span>
+          <span class="tool">DVC</span>
+          <span class="tool">LangSmith Prompt Hub</span>
+          <span class="tool">PromptLayer</span>
+          <span class="tool">MLflow Registry</span>
+          <span class="adopt"><span class="dot growing"></span>Adoption: Growing</span>
+        </p>
         <aside class="notes">
           <p>Start at the very front of the pipeline. The single highest-leverage move for an AI-embedded app is to get prompts, model version pins, and data out of ad-hoc config and into source control with real review. If a prompt tweak can change behavior like a refactor, it deserves a diff and an approver like a refactor.</p>
         </aside>
@@ -223,6 +243,15 @@
           <p>⚙️ <strong>Goal:</strong> Given a release tag, you can reconstruct the exact prompts, model, and data that
             produced its behavior.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">MLflow</span>
+          <span class="tool">BentoML</span>
+          <span class="tool">Docker</span>
+          <span class="tool">Hugging Face Hub</span>
+          <span class="tool">W&amp;B Artifacts</span>
+          <span class="adopt"><span class="dot emerging"></span>Adoption: Emerging</span>
+        </p>
         <aside class="notes">
           <p>Reproducibility is harder when part of what you ship is a model and a set of prompts. A build isn't reproducible if “latest” model floats or the prompt bundle isn't pinned. Bake the model version, decoding parameters, prompt bundle, and embedding model into the build manifest, and remember that swapping the embedding model silently invalidates every vector you've already indexed.</p>
         </aside>
@@ -246,6 +275,15 @@
           <p>🎯 <strong>Equivalent:</strong> Eval suite ≈ static analysis. Prompt diff review ≈ code review. Eval score
             regression ≈ failed CI build.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">promptfoo</span>
+          <span class="tool">OpenAI Evals</span>
+          <span class="tool">Braintrust</span>
+          <span class="tool">DeepEval</span>
+          <span class="tool">Guardrails AI</span>
+          <span class="adopt"><span class="dot growing"></span>Adoption: Growing</span>
+        </p>
         <aside class="notes">
           <p>This answers “what's the equivalent of code quality for a prompt?” It's an evaluation pipeline: representative inputs with expected or acceptable outputs, automated scoring—often another LLM acting as judge, plus graded human samples—and a required threshold to merge, just like a coverage gate. Prompt linting catches the obvious stuff before you even spend a token: missing guardrails, unbounded output, vague grounding.</p>
         </aside>
@@ -269,6 +307,15 @@
           <p>⚡ <strong>Result:</strong> Regressions in model behavior get caught at PR time—not by users in production.
           </p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">promptfoo</span>
+          <span class="tool">DeepEval</span>
+          <span class="tool">Ragas</span>
+          <span class="tool">pytest</span>
+          <span class="tool">LangSmith Datasets</span>
+          <span class="adopt"><span class="dot growing"></span>Adoption: Growing</span>
+        </p>
         <aside class="notes">
           <p>The unit-test equivalent for AI is the golden set: a curated collection of inputs paired with the behavior you expect. You can't assert exact strings against a non-deterministic model, so you assert on properties—did it include the required fact, use the right format, refuse when it should, avoid forbidden content. Pin temperature to zero where you can to keep the tests stable.</p>
         </aside>
@@ -292,6 +339,15 @@
           <p>🔁 <strong>Shift:</strong> From "assert the exact output" to "assert acceptable behavior within a
             tolerance."</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">LangSmith</span>
+          <span class="tool">Braintrust</span>
+          <span class="tool">Ragas</span>
+          <span class="tool">Giskard</span>
+          <span class="tool">Playwright</span>
+          <span class="adopt"><span class="dot emerging"></span>Adoption: Emerging</span>
+        </p>
         <aside class="notes">
           <p>At the integration level you're testing the whole flow: retrieval, tool calls, multi-step reasoning. Exact-match assertions don't survive here, so you validate meaning—embedding similarity or an LLM judge—and you test the agent's behavior including how it recovers from a failed tool call. Set a flake budget: expect some variance, and alert when the pass rate drifts out of band.</p>
         </aside>
@@ -314,6 +370,15 @@
         <div class="warning-box">
           <p>🔒 <strong>New scans:</strong> Prompt-injection suites and red-team runs join SAST/DAST in the pipeline.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">Lakera Guard</span>
+          <span class="tool">Rebuff</span>
+          <span class="tool">NVIDIA Garak</span>
+          <span class="tool">Microsoft PyRIT</span>
+          <span class="tool">LLM Guard</span>
+          <span class="adopt"><span class="dot emerging"></span>Adoption: Emerging</span>
+        </p>
         <aside class="notes">
           <p>Security gets new categories that don't map onto traditional SAST/DAST. Prompt injection arrives through untrusted content—user input, retrieved documents, tool results—so treat all of it as adversarial. Outputs need DLP scanning because models can regurgitate secrets or PII. And any agent that holds credentials and can take actions is a new privileged identity that needs least-privilege scoping and human approval on destructive calls.</p>
         </aside>
@@ -337,6 +402,14 @@
           <p>🔒 <strong>Extend the supply chain:</strong> Models, embeddings, datasets, and agent tools all need
             provenance and review.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">Protect AI Guardian</span>
+          <span class="tool">HF model scanning</span>
+          <span class="tool">CycloneDX AI-BOM</span>
+          <span class="tool">Snyk</span>
+          <span class="adopt"><span class="dot early"></span>Adoption: Early</span>
+        </p>
         <aside class="notes">
           <p>Your dependency graph now includes the model and its data. Track model source, version, license, and fine-tuning lineage like an SBOM. Provider model updates and deprecations should page you the way a CVE does, because a silent model change is a behavior change you didn't ship. And treat community prompts, plugins, and MCP tools as untrusted third-party dependencies.</p>
         </aside>
@@ -358,6 +431,15 @@
         </ul>
         <pre><code> [Prompt/Model Change] ──> [Eval Gate] ──> Pass ──> [Canary] ──> [Full Rollout]
                                       └──> Fail ──> [Block &amp; Review]</code></pre>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">LaunchDarkly</span>
+          <span class="tool">LiteLLM</span>
+          <span class="tool">Portkey</span>
+          <span class="tool">Helicone</span>
+          <span class="tool">model gateways</span>
+          <span class="adopt"><span class="dot growing"></span>Adoption: Growing</span>
+        </p>
         <aside class="notes">
           <p>Releasing an AI-embedded app means releasing a specific prompt bundle and a specific model version—pinned, never floating “latest.” A model swap is a deploy, so canary it: send a slice of traffic to the new model and compare eval score, latency, and cost before you promote. And make prompt and model rollback exactly as fast as a code rollback, because you'll need it.</p>
         </aside>
@@ -381,6 +463,15 @@
           <p>📈 <strong>New dashboard rows:</strong> Hallucination rate, eval score trend, and cost-per-interaction—right
             beside CPU, latency, and error rate.</p>
         </div>
+        <p class="tools">
+          <strong style="color:var(--heading-3)">Tools:</strong>
+          <span class="tool">Langfuse</span>
+          <span class="tool">LangSmith</span>
+          <span class="tool">Arize Phoenix</span>
+          <span class="tool">Helicone</span>
+          <span class="tool">Datadog LLM Obs</span>
+          <span class="adopt"><span class="dot growing"></span>Adoption: Growing</span>
+        </p>
         <aside class="notes">
           <p>Traditional observability won't tell you the model started hallucinating more after a silent provider update, or that a prompt change tripled token cost. You need eval-driven production sampling, drift alerts tied to prompt and model version changes, and human feedback captured as first-class telemetry that flows back into your golden set. Hallucination rate, eval trend, and cost-per-interaction become standard dashboard rows.</p>
         </aside>
@@ -461,45 +552,43 @@
       <!-- 18 -->
       <section class="slide">
         <h1>Key Challenges, Risks &amp; Mitigation</h1>
-        <p>While AI-embedded delivery unlocks huge value, teams must manage new risks:</p>
-        <div class="grid-2">
-          <div class="card">
-            <h3>1. Hallucinations &amp; Non-Determinism</h3>
-            <ul>
-              <li><strong>Risk:</strong> Fabricated or inconsistent output reaches users.</li>
-              <li><strong>Mitigation:</strong> Golden-set gates, semantic assertions, groundedness SLOs.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>2. Silent Model Drift</h3>
-            <ul>
-              <li><strong>Risk:</strong> A provider update changes behavior overnight.</li>
-              <li><strong>Mitigation:</strong> Model version pinning, drift detection, fast rollback.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>3. Prompt Injection &amp; Agent Misuse</h3>
-            <ul>
-              <li><strong>Risk:</strong> Untrusted input hijacks the model or its tools.</li>
-              <li><strong>Mitigation:</strong> Input sanitization, output DLP, scoped tool permissions, red-teaming.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>4. Runaway Cost</h3>
-            <ul>
-              <li><strong>Risk:</strong> Unbounded prompts or agent loops blow the budget.</li>
-              <li><strong>Mitigation:</strong> Token/latency SLOs and hard limits.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card" style="margin-top: 0.75em;">
-          <h3>5. Prompt &amp; Model Change Sprawl</h3>
-          <ul>
-            <li><strong>Risk:</strong> Behavior-changing edits bypass review entirely.</li>
-            <li><strong>Mitigation:</strong> Version everything, eval-gate every change, require reviewed diffs with
-              owners.</li>
-          </ul>
-        </div>
+        <p>These risks are shipping in production today&mdash;each one has a proven mitigation you can put in place now:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Challenge</th>
+              <th>Risk</th>
+              <th>Mitigation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hallucinations &amp; non-determinism</strong></td>
+              <td>Fabricated or inconsistent output reaches users</td>
+              <td>Golden-set gates, semantic assertions, groundedness SLOs</td>
+            </tr>
+            <tr>
+              <td><strong>Silent model drift</strong></td>
+              <td>A provider update changes behavior overnight</td>
+              <td>Model version pinning, drift detection, fast rollback</td>
+            </tr>
+            <tr>
+              <td><strong>Prompt injection &amp; agent misuse</strong></td>
+              <td>Untrusted input hijacks the model or its tools</td>
+              <td>Input sanitization, output DLP, scoped tools, red-teaming</td>
+            </tr>
+            <tr>
+              <td><strong>Runaway cost</strong></td>
+              <td>Unbounded prompts or agent loops blow the budget</td>
+              <td>Token/latency SLOs and hard limits</td>
+            </tr>
+            <tr>
+              <td><strong>Prompt &amp; model change sprawl</strong></td>
+              <td>Behavior-changing edits bypass review entirely</td>
+              <td>Version everything, eval-gate every change, reviewed diffs with owners</td>
+            </tr>
+          </tbody>
+        </table>
         <aside class="notes">
           <p>Be clear-eyed about the risks that come with the new artifacts. 1) Non-determinism means fabricated or inconsistent output—gate on golden sets and measure groundedness. 2) Model drift can break you without a commit—pin versions and detect drift. 3) Prompt injection is a real, exploitable attack surface—sanitize input, DLP the output, scope the tools. 4) Cost is a reliability concern now—treat tokens like a resource leak. 5) And the quiet one: behavior-changing prompt edits that never went through review. Version everything and eval-gate every change.</p>
         </aside>
@@ -573,8 +662,9 @@
             rollback.</li>
         </ol>
         <div class="highlight-box">
-          <p>🚀 <strong>The through-line:</strong> DevOps was coined in 2009 and matured through the 2010s to operate at Agile speed. Now we rebuild
-            it—stage by stage—to operate at AI speed. Pick the stage with your biggest gap and start there.</p>
+          <p>🚀 <strong>The through-line:</strong> DevOps was rebuilt once to move at Agile speed. It's being rebuilt
+            again for AI speed—and the teams that wait will ship AI they can't see, test, or trust. Don't boil the
+            ocean: pick the stage with your biggest gap and put one gate in place this week.</p>
         </div>
         <aside class="notes">
           <p>To close on the theme we opened with: we built DevOps for the speed of Agile, tuned to move deterministic code safely and fast. AI-embedded products changed the artifact, so we rebuild the pipeline stage by stage—version the prompts and models, evaluate instead of exact-match, extend security and the supply chain, pin and canary releases, and add AI-specific SLOs. Determinism gives way to evaluation, and verification beats trust. Pick the one stage where your gap is biggest and start there. Thank you! Let's open the floor for questions.</p>
