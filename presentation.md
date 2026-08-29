@@ -50,6 +50,44 @@ Now, AI is ushering in Phase 3 and Phase 4. We are moving beyond static rules an
 
 ---
 
+# Three Lenses on AI in DevOps
+
+### This talk looks at the same shift from three angles
+
+<div class="grid-2">
+<div class="card">
+
+### 🛠️ Lens 1: AI *Building* DevOps
+AI as a tool that helps us author the pipelines, IaC, tests, and runbooks that make up our automation.
+</div>
+
+<div class="card">
+
+### 🤝 Lens 2: AI *Inside* the Pipeline
+DevOps process and AI agents woven directly into the delivery pipeline itself—reviewing, testing, deploying, and operating.
+</div>
+</div>
+
+<div class="card" style="margin-top: 0.75em;">
+
+### 🧭 Lens 3: DevOps *For* AI-Native Products
+What DevOps must become now that the applications we ship have AI embedded in them—prompt quality, AI-specific security, and new observability.
+</div>
+
+<div class="highlight-box">
+
+💡 **Key Premise:** These are three different jobs. Conflating them leads teams to assume that adopting Copilot (Lens 1) also covers securing and operating an AI product in production (Lens 3)—it does not.
+</div>
+
+Note:
+Before we go further, let's set up the mental model for the rest of the talk. There are really three distinct conversations happening under the banner of "AI in DevOps," and they get conflated constantly.
+Lens 1 is about using AI as a tool to help us build our automation—pipelines, IaC, tests, runbooks.
+Lens 2 is about embedding AI agents and AI-driven decisions directly into the DevOps process itself—code review, deployment risk, incident response.
+Lens 3 is the one people forget: once the products we ship have AI/LLMs embedded in them, DevOps itself needs new practices—because a prompt change or a model swap can break things the same way a bad commit can, but our existing tools don't see it.
+We'll walk through all three, then close with the risks, governance, and a roadmap that spans all three lenses.
+
+---
+
 # Why AI in DevOps NOW?
 
 The convergence of four major industry forces:
@@ -104,6 +142,17 @@ Note:
 This table highlights the fundamental contrast.
 In traditional DevOps, every rule must be explicitly programmed by a human.
 In AI-Augmented DevOps, models learn normal behavior from data, predict anomalies before outages happen, and assist developers in writing safer code faster.
+
+---
+
+# Lens 1: AI Building DevOps Automation
+
+<!-- .slide: class="lead" -->
+
+### Using AI as a tool to author our pipelines, tests, and infrastructure
+
+Note:
+We start with Lens 1: using AI *as a tool* to help us build the automation that DevOps runs on—pipeline YAML, Terraform modules, test suites, runbooks. This is the most familiar lens; most teams are already here.
 
 ---
 
@@ -231,6 +280,17 @@ During canary releases, AI monitors micro-anomalies and triggers an automated ro
 
 ---
 
+# Lens 2: DevOps Process & Agents in the Pipeline
+
+<!-- .slide: class="lead" -->
+
+### Moving from AI-assisted steps to AI agents that participate in the pipeline itself
+
+Note:
+Now Lens 2: instead of AI just helping a human author automation, AI agents become participants *in* the DevOps process—triaging incidents, gating deployments, remediating vulnerabilities. This is where "agentic DevOps" lives.
+
+---
+
 # Phase 5: AI in Operations & Observability (AIOps)
 
 ### Next-Generation Incident Management & Self-Healing
@@ -335,6 +395,94 @@ Change failure rate drops due to comprehensive AI test coverage.
 
 ---
 
+# Lens 3: DevOps for AI-Embedded Applications
+
+<!-- .slide: class="lead" -->
+
+### The applications we ship now contain prompts and models—what does DevOps owe them?
+
+Note:
+The first two lenses were about using AI to run DevOps better. Lens 3 flips the question: our *products* now ship with LLMs, prompts, and agents embedded in them. That changes what "quality," "security," and "operations" mean for the DevOps org supporting them—regardless of whether we use AI to build our pipelines at all.
+
+---
+
+# The New Surface Area: What Ships With the App?
+
+### A prompt, a model version, and a tool config are now production artifacts
+
+* **Prompts are code, but they don't look like code:** A one-line prompt edit can change behavior as much as a major refactor—yet it rarely goes through a diff review with the same scrutiny.
+* **The model is a dependency you don't control:** Provider model updates, deprecations, and silent behavior drift happen on *their* release schedule, not yours.
+* **Non-determinism is now a first-class production concern:** The same input can legitimately produce different outputs; "it worked in my testing" means less than it used to.
+
+<div class="highlight-box">
+
+🧭 **Reframe:** DevOps must now track and gate prompts, model versions, and tool/agent permissions with the same discipline it applies to code and infrastructure.
+</div>
+
+Note:
+Traditionally our pipeline artifacts were code, containers, and config. Now add: prompt templates, system prompts, model version pins, retrieval sources, and agent tool permissions. Each of these can change application behavior in production without a traditional "code change" ever happening—so our existing change-management and CI gates often don't even see them.
+
+---
+
+# Prompt Quality Is the New Code Quality
+
+### Applying SDLC rigor to prompts, not just code
+
+* **Prompt version control:** Treat prompts/system messages as versioned artifacts with owners, PR review, and changelogs—not inline strings buried in application code.
+* **Golden-set regression testing:** Maintain curated input/output test sets (the prompt equivalent of unit tests) and run them on every prompt or model change to catch regressions before release.
+* **LLM-as-judge & rubric scoring:** Automated evaluators score outputs for correctness, tone, and policy adherence at PR time, similar to a linter or static analysis gate.
+* **Prompt linting:** Static checks for missing guardrail instructions, ambiguous grounding, or unbounded output length—before the prompt ever reaches a model.
+
+<div class="highlight-box">
+
+🎯 **Equivalent:** Eval suite ≈ test suite. Prompt diff review ≈ code review. Eval score regression ≈ failed CI build.
+</div>
+
+Note:
+This directly answers "what's the equivalent of code quality for prompts?" It's an evaluation pipeline: golden datasets of representative inputs with expected/acceptable outputs, automated scoring (often another LLM acting as judge, or human-graded samples), and a required score threshold to merge—exactly like a test coverage gate. Prompts should live in version control with real review, not be edited ad hoc in a config file or CMS.
+
+---
+
+# Securing AI-Embedded Applications
+
+### The threat model expands beyond traditional AppSec
+
+* **Prompt injection & jailbreaks:** Untrusted content (user input, retrieved documents, tool outputs) can hijack model instructions—treat every external input as adversarial, the same way we treat untrusted HTTP input.
+* **Data leakage through outputs:** Models can regurgitate secrets, PII, or other users' data from context or training; outputs need the same DLP scanning we apply to logs and commits.
+* **Agent permission scoping:** An AI agent with tool access is a new privileged identity—apply least-privilege, scoped credentials, and human-approval gates for any destructive or high-impact tool call.
+* **Model & supply-chain provenance:** Track model source, version, and fine-tuning lineage like an SBOM; unreviewed model or embedding updates are a supply-chain risk.
+* **Continuous red-teaming:** Adversarial prompt testing becomes a recurring pipeline stage, not a one-time pen test.
+
+<div class="warning-box">
+
+🔒 **Shift:** Security now has to review prompts, retrieval sources, and agent tool permissions—not just code and infrastructure.
+</div>
+
+Note:
+Security for AI-embedded apps needs new categories that don't map cleanly onto traditional SAST/DAST: prompt injection via retrieved documents or tool results, data exfiltration through model outputs, and agents that hold real credentials and can take real actions. Least-privilege scoping for agent tool calls and mandatory human approval for destructive actions are becoming as standard as IAM policies are for services today.
+
+---
+
+# Observability & SLOs for AI Systems
+
+### Extending monitoring beyond CPU, latency, and error rate
+
+* **Groundedness & hallucination rate:** Sample production outputs against source-of-truth data to measure how often the model fabricates or contradicts facts.
+* **Cost & token/latency budgets:** Treat token spend and response latency as SLOs—an unbounded prompt or runaway agent loop is the new "resource leak."
+* **Drift detection:** Monitor for silent behavior changes after provider model updates, prompt edits, or shifts in the input distribution.
+* **Human feedback loops:** Capture thumbs-up/down and escalation signals as production telemetry, feeding back into the eval/golden-set pipeline.
+* **Fast rollback for prompts & model versions:** Pin and roll back prompt/model versions with the same speed and confidence as a code rollback.
+
+<div class="highlight-box">
+
+📈 **New dashboard row:** Alongside CPU/latency/error-rate, add hallucination rate, eval score trend, and cost-per-interaction.
+</div>
+
+Note:
+Traditional observability doesn't tell you a model started hallucinating more after a silent provider update, or that a prompt change tripled token cost. Teams need eval-driven production sampling, drift alerts tied to prompt/model version changes, and rollback paths for prompts and model pins that are just as fast as a code rollback.
+
+---
+
 # Key Challenges, Risks & Mitigation
 
 While AI offers immense advantages, DevOps teams must manage crucial risks:
@@ -369,11 +517,20 @@ While AI offers immense advantages, DevOps teams must manage crucial risks:
 </div>
 </div>
 
+<div class="card" style="margin-top: 0.75em;">
+
+### 5. Prompt Injection & AI-Native Attack Surface (Lens 3)
+* **Risk:** Untrusted inputs hijacking embedded model/agent behavior in production.
+* **Mitigation:** Input sanitization, output DLP scanning, scoped agent tool permissions, continuous red-teaming.
+</div>
+
 Note:
 We must be clear-eyed about the challenges.
 1. Hallucinations: AI models can output plausible-sounding incorrect code. Never auto-deploy without automated testing.
 2. Privacy: Ensure your code isn't used for public model training.
 3. Skill atrophy: Junior engineers must still learn underlying concepts, not just accept AI output blindly.
+4. Tool sprawl: consolidate on a unified platform rather than a dozen disconnected point tools.
+5. This last one is the Lens 3 risk: once your product embeds a model, prompt injection and agent tool misuse are new attack classes that traditional AppSec scanning does not catch.
 
 ---
 
@@ -385,6 +542,7 @@ We must be clear-eyed about the challenges.
 2. **Least Privilege for AI Agents:** AI execution environments must operate under restricted IAM roles and scoped access tokens.
 3. **Auditability & Provenance:** Every AI-generated commit, PR, or remediation action must be logged with clear attribution tags.
 4. **Sandboxed Verification:** All AI-suggested operational commands must be validated in isolated environment sandboxes prior to production execution.
+5. **Prompt & Model Change Control (Lens 3):** Prompts and model version pins go through the same review, eval-gate, and rollback discipline as code.
 
 <div class="warning-box">
 
@@ -415,6 +573,7 @@ Establish clear guardrails:
 |  • Implement AI test generation & impact-based smart test selection      |
 |  • Introduce ML deployment risk scoring & automated canary analysis      |
 |  • Deploy AIOps for event correlation and root cause analysis          |
+|  • Stand up a prompt eval/golden-set pipeline for any AI-embedded app    |
 +------------------------------------+------------------------------------+
                                      |
 +------------------------------------v------------------------------------+
@@ -422,33 +581,37 @@ Establish clear guardrails:
 |  • Deploy autonomous AI agents for dependency management & CVE patching  |
 |  • Enable self-healing infrastructure runbooks                          |
 |  • Continuous, intent-driven pipeline optimization                      |
+|  • Full Lens 3 maturity: prompt/model change control, AI red-teaming,   |
+|    and hallucination/cost SLOs in production dashboards                 |
 +-------------------------------------------------------------------------+
 ```
 
 Note:
 How do you implement this in your organization? Follow a phased Crawl-Walk-Run roadmap.
 Start with developer enablement—tools like Copilot that provide immediate productivity wins.
-Move to Walk—introducing AI test generation, deployment risk scoring, and AIOps.
-Finally Run—adopting autonomous agents for routine patching and self-healing systems.
+Move to Walk—introducing AI test generation, deployment risk scoring, AIOps, and a first prompt evaluation pipeline (Lens 3).
+Finally Run—adopting autonomous agents for routine patching and self-healing systems, plus full Lens 3 maturity: prompt/model version control, continuous AI red-teaming, and hallucination/cost SLOs as standard dashboard rows.
 
 ---
 
 # Key Takeaways
 
-1. **DevOps is Evolving to Autonomy:** AI shifts software engineering from manual rule scripting to intent-driven, learning systems.
-2. **SDLC-Wide Transformation:** The biggest gains come from applying AI across the *entire* lifecycle—Plan, Code, Test, Deploy, Operate, Secure.
-3. **Verification over Trust:** Pair AI speed with strict, deterministic CI/CD validation gates and robust governance.
-4. **Focus on Human Augmentation:** AI eliminates toil, elevating engineers to focus on architecture, strategy, and business value.
+1. **Lens 1 — AI Builds the Automation:** AI shifts pipeline/IaC/test authoring from manual rule scripting to intent-driven generation.
+2. **Lens 2 — AI Joins the Pipeline:** Agents move from suggesting changes to participating in review, deployment, and incident response—under human governance.
+3. **Lens 3 — DevOps for AI-Native Apps:** Prompts and model versions need the same rigor as code: eval-gated review, AI-specific security, and hallucination/cost SLOs.
+4. **Verification over Trust:** Across all three lenses, pair AI speed with strict, deterministic validation gates and robust governance.
 
 <div class="highlight-box">
 
-🚀 **Action for Today:** Audit your software lifecycle bottlenecks and identify your first high-ROI AI integration point!
+🚀 **Action for Today:** Pick one lens where you have the biggest gap—likely Lens 3 if your product embeds AI—and identify your first high-ROI integration point!
 </div>
 
 Note:
-To summarize:
-DevOps is evolving from rule automation to intelligent autonomy.
-Focus on systemic lifecycle integration, maintain robust verification guardrails, and empower your engineers to do their best strategic work.
+To summarize with the three-lens framing:
+Lens 1: AI is a productivity tool for building our automation—pipelines, IaC, tests.
+Lens 2: AI agents become active participants inside the DevOps process itself, under human governance.
+Lens 3: once our products embed AI, DevOps must extend to cover prompt quality, AI-specific security, and AI observability—this is the lens most teams haven't started yet.
+Focus on systemic lifecycle integration, maintain robust verification guardrails across all three lenses, and empower your engineers to do their best strategic work.
 Thank you! Let's open the floor for questions.
 
 ---
