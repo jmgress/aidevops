@@ -1,3 +1,22 @@
+# DevOps in the Age of AI
+
+<!-- .slide: class="lead intro" -->
+
+<img class="avatar" src="https://jmgress.github.io/usegenai/img/00-jamesgress.png" alt="James Gress">
+
+## James Gress
+
+### AI Director, Accenture
+
+[LinkedIn: jamesgress](https://linkedin.com/in/jamesgress/) · [GitHub: jmgress](https://github.com/jmgress)
+
+[Tampa Bay Generative AI Meetup](https://www.meetup.com/tampa-bay-generative-ai-meetup/)
+
+Note:
+Welcome everyone. Today we are diving into one of the most transformative shifts in software engineering: "DevOps in the Age of AI".
+
+---
+
 # Executive Summary: The Paradigm Shift
 
 ### The Evolution of Software Delivery
