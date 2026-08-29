@@ -1,0 +1,200 @@
+/* Dark GitHub-style theme for reveal.js, ported from the original Marp deck. */
+
+:root {
+  --bg: #0d1117;
+  --bg-alt: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --heading: #58a6ff;
+  --heading-2: #79c0ff;
+  --heading-3: #a5d6ff;
+  --strong: #f0f6fc;
+  --muted: #8b949e;
+}
+
+.reveal {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 26px;
+  color: var(--text);
+}
+
+.reveal-viewport {
+  background-color: var(--bg);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 30px 50px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: var(--heading);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.reveal h1 {
+  font-size: 1.7em;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.reveal h2 {
+  font-size: 1.3em;
+  color: var(--heading-2);
+}
+
+.reveal h3 {
+  font-size: 1.05em;
+  color: var(--heading-3);
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.4;
+}
+
+.reveal strong {
+  color: var(--strong);
+}
+
+.reveal a {
+  color: var(--heading-2);
+}
+
+.reveal code {
+  background-color: var(--bg-alt);
+  color: var(--heading-3);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9em;
+}
+
+.reveal pre {
+  width: 100%;
+  box-shadow: none;
+  font-size: 0.5em;
+}
+
+.reveal pre code {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  max-height: none;
+  display: block;
+}
+
+.reveal blockquote {
+  background-color: var(--bg-alt);
+  border-left: 4px solid var(--heading);
+  padding: 10px 20px;
+  color: var(--muted);
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+  width: 100%;
+  box-shadow: none;
+}
+
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+
+.reveal table th {
+  background-color: var(--bg-alt);
+  color: var(--heading);
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+.reveal table td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  background-color: var(--bg);
+}
+
+/* Custom layout helpers carried over from the Marp deck. */
+.highlight-box {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-left: 5px solid #238636;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.warning-box {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-left: 5px solid #d29922;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.badge {
+  background-color: #238636;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+/* Lead / title slides. */
+.reveal .slides section.lead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1f242d 100%);
+}
+
+.reveal .slides section.lead h1 {
+  font-size: 2.4em;
+  border-bottom: none;
+  color: var(--heading);
+  margin-bottom: 15px;
+}
+
+.reveal .slides section.lead h2 {
+  font-size: 1.2em;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.reveal .slides section.lead p {
+  color: #7d8590;
+}
+
+.reveal .slide-number {
+  background-color: transparent;
+  color: #484f58;
+}

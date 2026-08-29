@@ -1,154 +1,16 @@
----
-marp: true
-theme: default
-paginate: true
-header: "DevOps in the Age of AI | Keynote Presentation"
-footer: "DevOps in the Age of AI"
-style: |
-  section {
-    background-color: #0d1117;
-    color: #c9d1d9;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding: 40px 60px;
-    font-size: 22px;
-  }
-  h1, h2, h3 {
-    color: #58a6ff;
-    font-weight: 600;
-  }
-  h1 {
-    font-size: 1.8em;
-    border-bottom: 2px solid #30363d;
-    padding-bottom: 12px;
-    margin-bottom: 20px;
-  }
-  h2 {
-    font-size: 1.4em;
-    color: #79c0ff;
-  }
-  h3 {
-    font-size: 1.1em;
-    color: #a5d6ff;
-  }
-  section.lead {
-    text-align: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1f242d 100%);
-  }
-  section.lead h1 {
-    font-size: 2.5em;
-    border-bottom: none;
-    color: #58a6ff;
-    margin-bottom: 15px;
-  }
-  section.lead h2 {
-    font-size: 1.3em;
-    color: #8b949e;
-    font-weight: 400;
-  }
-  section.lead p {
-    color: #7d8590;
-  }
-  strong {
-    color: #f0f6fc;
-  }
-  code {
-    background-color: #161b22;
-    color: #a5d6ff;
-    padding: 2px 6px;
-    border-radius: 6px;
-    border: 1px solid #30363d;
-  }
-  pre {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-  }
-  blockquote {
-    background-color: #161b22;
-    border-left: 4px solid #58a6ff;
-    padding: 10px 20px;
-    color: #8b949e;
-    font-style: italic;
-    border-radius: 0 8px 8px 0;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 0.85em;
-  }
-  th {
-    background-color: #161b22;
-    color: #58a6ff;
-    border: 1px solid #30363d;
-    padding: 10px;
-    text-align: left;
-  }
-  td {
-    border: 1px solid #30363d;
-    padding: 8px 10px;
-    background-color: #0d1117;
-  }
-  .highlight-box {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-left: 5px solid #238636;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-  }
-  .warning-box {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-left: 5px solid #d29922;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .card {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  .badge {
-    background-color: #238636;
-    color: #ffffff;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.7em;
-    font-weight: bold;
-  }
-  footer {
-    color: #484f58;
-    font-size: 14px;
-  }
-  header {
-    color: #484f58;
-    font-size: 14px;
-  }
----
-
-<!-- _class: lead -->
-
 # DevOps in the Age of AI
+
+<!-- .slide: class="lead" -->
+
 ## Transforming the Software Delivery Lifecycle: From Automation to Autonomy
 
 **A Comprehensive Guide to AI-Augmented DevOps**
 
 *Presenter Name | DevOps & AI Keynote*
 
-<!--
-Speaker Notes:
+Note:
 Welcome everyone. Today we are diving into one of the most transformative shifts in software engineering: "DevOps in the Age of AI".
 Over the past decade, DevOps revolutionized how we build, test, and deploy software through automation and cultural alignment. Now, Artificial Intelligence—specifically Generative AI, Machine Learning, and Agentic Systems—is propelling DevOps into its next evolutionary phase: moving from script-driven automation to intelligent autonomy.
--->
 
 ---
 
@@ -166,12 +28,10 @@ Over the past decade, DevOps revolutionized how we build, test, and deploy softw
 💡 **Key Premise:** AI is not replacing DevOps—it is expanding human capability, reducing cognitive load, and transforming reactive troubleshooting into proactive delivery.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 To set the baseline: DevOps has always been about reducing friction between development and operations.
 We moved from manual tickets to automated scripts and Infrastructure as Code.
 Now, AI is ushering in Phase 3 and Phase 4. We are moving beyond static rules and YAML scripts toward systems that reason, predict, and auto-correct.
--->
 
 ---
 
@@ -205,14 +65,12 @@ Businesses require higher release frequencies without sacrificing uptime or secu
 </div>
 </div>
 
-<!--
-Speaker Notes:
+Note:
 Why now? Four convergence drivers:
 1. Telemetry overload: Humans can't scan millions of log lines during an outage.
 2. GenAI capabilities: LLMs can analyze code, write tests, and summarize incidents.
 3. System complexity: Cloud-native environments have too many moving parts for manual correlation.
 4. Business urgency: Teams need to release continuously while keeping MTTR near zero.
--->
 
 ---
 
@@ -227,12 +85,10 @@ Why now? Four convergence drivers:
 | **Monitoring & Incidents** | Static alert thresholds (e.g., CPU > 80%) | Anomaly detection & Automated Root Cause Analysis |
 | **Security** | Scheduled SAST/DAST scans | Real-time AI auto-remediation & context guardrails |
 
-<!--
-Speaker Notes:
+Note:
 This table highlights the fundamental contrast.
 In traditional DevOps, every rule must be explicitly programmed by a human.
 In AI-Augmented DevOps, models learn normal behavior from data, predict anomalies before outages happen, and assist developers in writing safer code faster.
--->
 
 ---
 
@@ -265,12 +121,10 @@ In AI-Augmented DevOps, models learn normal behavior from data, predict anomalie
  +-----------------------------------------------------------------------+
 ```
 
-<!--
-Speaker Notes:
+Note:
 AI impacts every single phase of the DevOps lifecycle loop.
 It isn't just about code generation—it extends from initial planning down to monitoring and security operations.
 Let's walk through each stage to see how AI transforms real workflows.
--->
 
 ---
 
@@ -287,11 +141,9 @@ Let's walk through each stage to see how AI transforms real workflows.
 🎯 **Impact:** Reduces ambiguity early in the lifecycle, preventing costly rework during development and deployment phases.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 In the Planning phase, AI helps product and engineering teams bridge the gap between intent and implementation.
 Instead of vague ticket descriptions leading to broken specs, AI generates edge cases and flags dependency risks before a single line of code is written.
--->
 
 ---
 
@@ -314,12 +166,10 @@ Instead of vague ticket descriptions leading to broken specs, AI generates edge 
 </div>
 </div>
 
-<!--
-Speaker Notes:
+Note:
 In the Code & Build phase, AI assistants act as co-pilots.
 Studies consistently show developers complete tasks up to 55% faster with AI assistants.
 Beyond typing code, AI summarizes complex PR diffs, reviews changes for security anti-patterns, and automates tedious refactoring.
--->
 
 ---
 
@@ -337,14 +187,12 @@ Beyond typing code, AI summarizes complex PR diffs, reviews changes for security
 ⚡ **Result:** Faster CI pipeline runs, higher test coverage, and dramatic reduction in false-positive build failures.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 Test suites are often the biggest bottleneck in CI/CD pipelines.
 AI solves three major pain points:
 1. Writing tests automatically.
 2. Self-healing UI test selectors when layouts change.
 3. Smart test selection—running only the 5% of tests impacted by a code commit rather than the full 10,000-test suite.
--->
 
 ---
 
@@ -361,12 +209,10 @@ AI solves three major pain points:
                                        └──> High Risk ──> [Gate & Review]
 ```
 
-<!--
-Speaker Notes:
+Note:
 Deployments should not be heart-stopping events.
 With AI, every release receives a risk score based on historical commit data and test signals.
 During canary releases, AI monitors micro-anomalies and triggers an automated rollback within seconds if metrics degrade, long before customer complaints arrive.
--->
 
 ---
 
@@ -384,12 +230,10 @@ During canary releases, AI monitors micro-anomalies and triggers an automated ro
 🔍 **Shift:** Moving from "Alert Fatigue" to "Instant Contextual Root Cause".
 </div>
 
-<!--
-Speaker Notes:
+Note:
 AIOps is revolutionizing operations.
 Traditional monitoring suffers from alert fatigue—hundreds of pages during a major outage.
 AIOps correlates alerts across services, suppresses noise, isolates the root cause (e.g., "Commit X updated config Y 3 minutes ago"), and suggests exact remediation steps.
--->
 
 ---
 
@@ -407,11 +251,9 @@ AIOps correlates alerts across services, suppresses noise, isolates the root cau
 🔒 **Security First:** AI enables true "Shift-Left Security" by catching and fixing vulnerabilities at the moment of authoring.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 DevSecOps often struggles because security scans block builds with false positives.
 AI understands context: it filters out non-exploitable warnings and provides actionable code patches for real vulnerabilities, enabling developers to remediate issues immediately.
--->
 
 ---
 
@@ -444,13 +286,11 @@ AI understands context: it filters out non-exploitable warnings and provides act
 2. **Tool Use & Execution:** Executing terminal commands, running tests, reading logs.
 3. **Self-Correction:** Evaluating test failures and adjusting code iteratively.
 
-<!--
-Speaker Notes:
+Note:
 We are transitioning from the "Copilot Era" to the "Agentic Era".
 A Copilot auto-completes what you are typing.
 An AI Agent accepts a high-level objective—such as "Upgrade library X and fix breaking changes"—and autonomously researches the codebase, makes changes, verifies tests, and submits a PR.
 Notice that human oversight remains key: Human-on-the-loop.
--->
 
 ---
 
@@ -470,15 +310,13 @@ AI directly accelerates all four core DORA metrics:
 📊 **Bottom Line:** 3x to 5x increase in engineering throughput with higher reliability.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 How do we measure ROI? Look at the DORA metrics.
 AI impacts every single one:
 Lead time drops because code and PR reviews are faster.
 Deployment frequency increases because risk scoring gives confidence.
 MTTR plummets because AIOps identifies root causes in seconds.
 Change failure rate drops due to comprehensive AI test coverage.
--->
 
 ---
 
@@ -516,13 +354,11 @@ While AI offers immense advantages, DevOps teams must manage crucial risks:
 </div>
 </div>
 
-<!--
-Speaker Notes:
+Note:
 We must be clear-eyed about the challenges.
 1. Hallucinations: AI models can output plausible-sounding incorrect code. Never auto-deploy without automated testing.
 2. Privacy: Ensure your code isn't used for public model training.
 3. Skill atrophy: Junior engineers must still learn underlying concepts, not just accept AI output blindly.
--->
 
 ---
 
@@ -540,14 +376,12 @@ We must be clear-eyed about the challenges.
 🛡️ **Rule of Thumb:** Trust AI for intelligence and speed; rely on deterministic pipelines for verification and enforcement.
 </div>
 
-<!--
-Speaker Notes:
+Note:
 Governance is essential.
 Establish clear guardrails:
 - Never give an AI agent unrestricted production admin rights.
 - Always log AI actions for audit trail purposes.
 - Treat AI code as un-trusted input until validated by tests.
--->
 
 ---
 
@@ -576,13 +410,11 @@ Establish clear guardrails:
 +-------------------------------------------------------------------------+
 ```
 
-<!--
-Speaker Notes:
+Note:
 How do you implement this in your organization? Follow a phased Crawl-Walk-Run roadmap.
 Start with developer enablement—tools like Copilot that provide immediate productivity wins.
 Move to Walk—introducing AI test generation, deployment risk scoring, and AIOps.
 Finally Run—adopting autonomous agents for routine patching and self-healing systems.
--->
 
 ---
 
@@ -598,19 +430,17 @@ Finally Run—adopting autonomous agents for routine patching and self-healing s
 🚀 **Action for Today:** Audit your software lifecycle bottlenecks and identify your first high-ROI AI integration point!
 </div>
 
-<!--
-Speaker Notes:
+Note:
 To summarize:
 DevOps is evolving from rule automation to intelligent autonomy.
 Focus on systemic lifecycle integration, maintain robust verification guardrails, and empower your engineers to do their best strategic work.
 Thank you! Let's open the floor for questions.
--->
 
 ---
 
-<!-- _class: lead -->
-
 # Questions & Discussion
+
+<!-- .slide: class="lead" -->
 
 ### DevOps in the Age of AI
 **Thank You for Attending!**
@@ -618,11 +448,9 @@ Thank you! Let's open the floor for questions.
 *Explore the Repository & Presentation Deck Resources:*
 `https://github.com/jmgress/aidevops`
 
-<!--
-Speaker Notes:
+Note:
 Thank the audience and open up for Q&A.
 Common questions to anticipate:
 - How do we handle AI hallucinations in production?
 - What is the cost model for enterprise AI tools?
 - How do we upscale current DevOps engineers for AI workflows?
--->

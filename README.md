@@ -14,49 +14,45 @@ This repository contains everything needed to deliver an engaging 35–45 minute
 
 | File | Description |
 | :--- | :--- |
-| 📄 [`presentation.md`](./presentation.md) | **Main Slide Deck** in Marp Markdown format, complete with high-contrast styling, diagrams, tables, and speaker notes. |
-| 🌐 [`presentation.html`](./presentation.html) | **Interactive Web Presentation** compiled via Marp CLI. Can be opened directly in any modern web browser. |
+| 🌐 [`index.html`](./index.html) | **Presentation host page** powered by [reveal.js](https://revealjs.com) (loaded from CDN). Open it over a local server or via GitHub Pages. |
+| 📄 [`presentation.md`](./presentation.md) | **Main Slide Deck** in plain Markdown. Slides are separated by `---`; speaker notes follow a `Note:` line. Edit this file to change content. |
+| 🎨 [`css/theme.css`](./css/theme.css) | **Dark GitHub-style theme** for the slides. Edit here to change colors, fonts, and layout helpers (`.card`, `.grid-2`, `.highlight-box`, `.warning-box`). |
 | 🎙️ [`SPEAKER_NOTES.md`](./SPEAKER_NOTES.md) | **Detailed Presenter Guide** containing slide-by-slide talking scripts, timing benchmarks, key emphasis points, and Q&A preparation. |
-| ⚙️ [`package.json`](./package.json) | NPM configuration with build scripts to compile, watch, or export slides to PDF/PPTX. |
+| ⚙️ [`package.json`](./package.json) | NPM configuration with a local preview server script and the validation test. |
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### 1. View the HTML Presentation Immediately
-Simply open `presentation.html` in your web browser:
+> The deck loads `presentation.md` at runtime with `fetch`, so it must be served over HTTP. Opening `index.html` directly from the file system (`file://`) will not load the slides — use one of the options below.
+
+### 1. Preview Locally
+From the repository root, start a static server and open the printed URL:
 ```bash
-# On macOS
-open presentation.html
+# Option A: Node (no install needed)
+npm start
 
-# On Linux
-xdg-open presentation.html
-
-# Or open presentation.html directly in Chrome/Edge/Firefox/Safari
+# Option B: Python 3
+npm run preview   # serves http://localhost:8080
 ```
+Then browse to the local URL (e.g. `http://localhost:8080`).
 
-### 2. Build or Recompile HTML
-To rebuild `presentation.html` after making edits to `presentation.md`:
+### 2. Publish on GitHub Pages
+1. Push these files to the `main` branch.
+2. In the repo: **Settings → Pages**.
+3. **Source:** Deploy from a branch. **Branch:** `main`, **Folder:** `/ (root)`. Save.
+4. After ~1 minute the deck is live at `https://<owner>.github.io/<repo>/` (for this repo: `https://jmgress.github.io/aidevops/`).
+
+The `.nojekyll` file ensures GitHub Pages serves the files as-is without Jekyll processing.
+
+### 3. Edit the Slides
+Edit [`presentation.md`](./presentation.md) — add or remove a slide by separating content with a line containing only `---`. Put speaker notes after a `Note:` line at the end of a slide. Refresh the browser to see changes.
+
+### 4. Validate
 ```bash
-npm run build
+npm test
 ```
-
-### 3. Live Presenter Mode & Watch Server
-To run a local live-reload preview server while presenting or editing:
-```bash
-npm run start
-```
-This launches a local web server (default: `http://localhost:8080`) with auto-reload.
-
-### 4. Export to PDF or PowerPoint (PPTX)
-To export the slide deck for printing or offline presentation tools:
-```bash
-# Export to PDF
-npm run build:pdf
-
-# Export to PowerPoint (PPTX)
-npm run build:pptx
-```
+Checks required files exist, the deck has 18 slides, and `index.html` wires up reveal.js.
 
 ---
 
@@ -88,11 +84,12 @@ The 18-slide deck covers the complete Software Delivery Lifecycle (SDLC) and AI 
 ## 🎙️ Presenter Tips & Best Practices
 
 1. **Review Speaker Notes:** Read through [`SPEAKER_NOTES.md`](./SPEAKER_NOTES.md) beforehand for slide-by-slide scripts and estimated slide timing (1.5 to 2.5 minutes per slide).
-2. **Interactive Controls in HTML:**
+2. **Interactive Controls (reveal.js):**
    - Press **`F`** for Fullscreen mode.
-   - Press **`P`** to toggle Marp Presenter View (shows upcoming slide + slide notes + timer).
+   - Press **`S`** to open Speaker View (shows notes, next slide, and a timer in a separate window).
+   - Press **`Esc`** or **`O`** for the slide overview grid.
    - Use **`Right Arrow` / `Space`** to advance slides.
-3. **Customization:** Modify colors or fonts in `presentation.md` by editing the CSS block in the YAML header at the top of the file.
+3. **Customization:** Modify colors, fonts, and layout in [`css/theme.css`](./css/theme.css). Adjust deck behavior (size, slide numbers) in the `Reveal.initialize(...)` call in [`index.html`](./index.html).
 
 ---
 
