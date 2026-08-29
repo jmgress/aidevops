@@ -1,11 +1,11 @@
 {
   "name": "aidevops-presentation",
   "version": "1.0.0",
-  "description": "DevOps in the Age of AI presentation deck and presenter guide (reveal.js on GitHub Pages)",
+  "description": "DevOps in the Age of AI presentation deck and presenter guide (reveal-md on GitHub Pages)",
   "main": "presentation.md",
   "scripts": {
-    "start": "npx --yes serve .",
-    "preview": "python3 -m http.server 8080",
+    "start": "npx --yes reveal-md presentation.md",
+    "build": "npx --yes reveal-md presentation.md --static _site",
     "test": "node scripts/validate.js"
   },
   "keywords": [

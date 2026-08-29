@@ -1,3 +1,15 @@
+---
+customTheme: css/theme
+highlightTheme: monokai
+revealOptions:
+  width: 1280
+  height: 720
+  margin: 0.04
+  center: false
+  hash: true
+  slideNumber: 'c/t'
+---
+
 # DevOps in the Age of AI
 
 <!-- .slide: class="lead intro" -->

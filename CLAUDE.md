@@ -4,29 +4,33 @@
 
 | File | Purpose |
 |------|---------|
-| `presentation.md` | **All slide content.** Every slide lives here, including the intro/title slide. Edit this file to add, remove, or reorder slides. |
-| `index.html` | Reveal.js shell. Loads `presentation.md` via the markdown plugin. Do **not** add slide content here — keep it as a thin wrapper. |
-| `css/theme.css` | Dark GitHub-style theme. Custom layout helpers (`.card`, `.grid-2`, `.highlight-box`, `.lead`, `.intro`, `.avatar`) are defined here. |
-| `SPEAKER_NOTES.md` | Full speaker notes for reference. Not rendered by reveal.js. |
+| `presentation.md` | **The only file you need to edit.** All slides, config, and YAML frontmatter live here. |
+| `css/theme.css` | Dark GitHub-style theme. Custom helpers: `.card`, `.grid-2`, `.highlight-box`, `.lead`, `.intro`, `.avatar`. |
+| `SPEAKER_NOTES.md` | Full speaker notes for reference. Not rendered by reveal-md. |
+
+There is no `index.html`. The presentation is built by **reveal-md**, which reads `presentation.md` directly.
 
 ## Slide authoring
 
 - Slides are separated by `\n---\n` (blank line, three dashes, blank line).
-- The first slide uses `<!-- .slide: class="lead intro" -->` placed after the `# heading` to apply the centered presenter-bio layout.
+- The first slide uses `<!-- .slide: class="lead intro" -->` (placed after the `# heading`) for the centered presenter-bio layout.
 - Use `<!-- .slide: class="lead" -->` for other section-title slides.
 - Speaker notes go after `Note:` at the end of a slide.
 - HTML blocks (`<div class="card">`, `<img>`, etc.) are valid inside the markdown.
+- Reveal.js config (dimensions, hash, slideNumber, theme) lives in the YAML frontmatter at the top of `presentation.md`.
 
 ## Running locally
 
 ```bash
-npm start          # serves on http://localhost:3000
-# or
-python3 -m http.server 8080
+npm start   # serves at http://localhost:1948/presentation.md
 ```
 
-> **Important:** always use a local server — opening `index.html` directly via `file://` will fail to load `presentation.md` due to browser security restrictions.
+## Building a static site
+
+```bash
+npm run build   # outputs to _site/ (gitignored)
+```
 
 ## Deploying
 
-Push to `main`. The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) deploys the repo root to GitHub Pages automatically.
+Push to `main`. The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) runs `reveal-md --static` and deploys `_site/` to GitHub Pages automatically.
