@@ -24,6 +24,8 @@
           <a href="https://github.com/jmgress" target="_blank" rel="noopener">GitHub: jmgress</a></p>
         <p><a href="https://www.meetup.com/tampa-bay-generative-ai-meetup/" target="_blank" rel="noopener">Tampa Bay
             Generative AI Meetup</a></p>
+        <p style="margin-top:14px;color:var(--heading-3);font-size:1em;">Why every DevOps stage has to be rebuilt when AI
+          ships inside the product — told through one team's 3AM incident.</p>
         <aside class="notes">
           <p>Welcome everyone. Today we are diving into one of the most transformative shifts in software engineering: “DevOps in the Age of AI.”</p>
           <p>But I don't want to start with a definition. I want to start with a pager going off at 3 in the morning. Let me introduce you to Maya.</p>
@@ -35,21 +37,31 @@
         <span class="act-label">Act I · The 3AM Page</span>
         <h1>“Nothing changed. So why is it broken?”</h1>
         <p><span class="timestamp">03:47</span> — Maya, an engineering lead, is paged. <strong>Aria</strong>,
-          her team's AI customer-support assistant, is confidently telling customers the <em>wrong</em> refund policy.</p>
-        <div class="grid-2">
-          <div class="card">
+          her team's AI customer-support assistant, is confidently telling customers the <em>wrong</em> refund policy —
+          a 14-day window quoted as 60 days. Support tickets are spiking and finance is already asking who approved it.</p>
+        <div class="grid-3">
+          <div class="card tight">
             <h3>What the dashboards said</h3>
-            <p>CPU normal. Latency normal. Error rate: <strong>zero</strong>. Every green light was green.</p>
+            <p>CPU normal. Latency normal. Error rate: <strong>zero</strong>. Every SLO green, every alert silent.</p>
           </div>
-          <div class="card">
+          <div class="card tight">
             <h3>What Git said</h3>
-            <p>No commit. No deploy. No config change. The last release was <strong>nine days ago</strong>.</p>
+            <p>No commit. No deploy. No config change. No feature flag. The last release was <strong>nine days ago</strong>.</p>
+          </div>
+          <div class="card tight">
+            <h3>What customers saw</h3>
+            <p>Confident, well-formatted, <strong>authoritative</strong> answers — that were simply, quietly wrong.</p>
           </div>
         </div>
         <div class="warning-box">
-          <p>⚠️ <strong>The truth, found hours later:</strong> the model provider had silently updated the underlying model
-            overnight. Behavior changed in production — and Maya's team couldn't <em>see</em> it, couldn't
-            <em>test</em> it, and had no way to <em>roll it back</em>.</p>
+          <p>⚠️ <strong>The truth, found hours later:</strong> the model provider had silently rolled the underlying
+            model to a new snapshot overnight. Same API, same model name, <em>different behavior</em> — and Maya's team
+            couldn't <em>see</em> it, couldn't <em>test</em> it, couldn't <em>diff</em> it, and had no way to
+            <em>roll it back</em>.</p>
+        </div>
+        <div class="scenario">
+          <p>Every tool in the room was built to answer "<strong>what changed in our code?</strong>" The thing that
+            changed wasn't code — and nothing they owned was even watching it.</p>
         </div>
         <aside class="notes">
           <p>Here's the scenario we'll follow all talk. Maya leads a team that ships Aria, an AI support assistant. At 3:47am she's paged: Aria is giving customers wrong refund information. But every dashboard is green — CPU, latency, error rate all normal. Git shows no commit, no deploy in nine days.</p>
@@ -66,14 +78,24 @@
             <h3>Built for Agile</h3>
             <p>DevOps emerged to move <strong>deterministic code</strong> from commit to production fast and safely. We
               designed CI/CD, IaC, and test gates for Agile's velocity: same input, same output—every time.</p>
+            <ul class="compact">
+              <li>Every change enters through a <strong>diff</strong> and a pull request.</li>
+              <li>Tests assert <strong>exact outputs</strong>; green means safe.</li>
+              <li>Dependencies move only when <em>we</em> bump a version.</li>
+            </ul>
           </div>
           <div class="card">
             <h3>Now We Build for AI</h3>
             <p>Our products embed <strong>prompts, models, and agents</strong>. The same input can produce different
               outputs, and a dependency we don't control can change behavior overnight.</p>
+            <ul class="compact">
+              <li>Behavior-defining changes arrive with <strong>no diff</strong>.</li>
+              <li>Correctness is a <strong>distribution</strong>, not an equality check.</li>
+              <li>The model updates on the <em>provider's</em> schedule, not ours.</li>
+            </ul>
           </div>
         </div>
-        <div class="card" style="margin-top: 0.75em;">
+        <div class="card" style="margin-top: 0.6em;">
           <h3>The artifact changed</h3>
           <p>A prompt edit or a model swap can alter production behavior as much as a code change—yet source control,
             build, test, security, and release were never designed to <em>see</em> them.</p>
@@ -94,23 +116,25 @@
         <h1>Why Rebuild DevOps for AI Now?</h1>
         <h3>Four forces already making AI-embedded delivery a first-class DevOps problem</h3>
         <div class="grid-2">
-          <div class="card">
+          <div class="card tight">
             <h3>1. AI Is Now in the Product</h3>
             <p>LLMs, prompts, and agents ship to users. The behavior that defines quality lives in artifacts our
-              pipelines don't version or test.</p>
+              pipelines don't version or test. <em>The model is no longer a tool we use—it's a feature we ship.</em></p>
           </div>
-          <div class="card">
+          <div class="card tight">
             <h3>2. Non-Determinism in Production</h3>
             <p>The same input can legitimately produce different outputs. "It worked in my testing" no longer guarantees
-              correctness.</p>
+              correctness—<em>and can't be reproduced on demand.</em></p>
           </div>
-          <div class="card">
+          <div class="card tight">
             <h3>3. Models Are Dependencies You Don't Control</h3>
-            <p>Providers update, deprecate, and silently drift on <em>their</em> schedule—not yours.</p>
+            <p>Providers update, deprecate, and silently drift on <em>their</em> schedule—not yours. A pinned model name
+              can still change behavior beneath you.</p>
           </div>
-          <div class="card">
+          <div class="card tight">
             <h3>4. Velocity + Reliability Still Required</h3>
-            <p>Teams must ship AI features continuously without new outages, security holes, or runaway cost.</p>
+            <p>Teams must ship AI features continuously without new outages, security holes, or runaway cost—<em>while
+              regulators and customers raise the bar on trust.</em></p>
           </div>
         </div>
         <div class="warning-box">
@@ -175,6 +199,26 @@
               <td>CPU, latency, error rate</td>
               <td>+ Hallucination, drift, token cost</td>
             </tr>
+            <tr>
+              <td><strong>Rollback unit</strong></td>
+              <td>Revert a commit or image tag</td>
+              <td>+ Revert a prompt bundle or model pin</td>
+            </tr>
+            <tr>
+              <td><strong>Change review</strong></td>
+              <td>Code diff + approver</td>
+              <td>+ Prompt diff, eval score, model provenance</td>
+            </tr>
+            <tr>
+              <td><strong>Cost driver</strong></td>
+              <td>Compute &amp; infra footprint</td>
+              <td>+ Tokens per request, context size, retries</td>
+            </tr>
+            <tr>
+              <td><strong>Definition of done</strong></td>
+              <td>Tests pass, build is green</td>
+              <td>+ Eval thresholds met on the golden set</td>
+            </tr>
           </tbody>
         </table>
         <aside class="notes">
@@ -186,7 +230,8 @@
       <section class="slide">
         <h1>The DevOps Lifecycle, Rebuilt for AI</h1>
         <h3>Every stage gains a new artifact and a new failure mode</h3>
-        <pre><code> SOURCE CONTROL    -> prompts, model pins, datasets &amp; RAG sources are versioned artifacts
+        <pre><code> PLAN &amp; DESIGN     -> pick a use case, define evals &amp; guardrails before a line of prompt
+ SOURCE CONTROL    -> prompts, model pins, datasets &amp; RAG sources are versioned artifacts
  BUILD &amp; PACKAGE   -> model weights, embeddings &amp; prompt bundles pinned for reproducibility
  CODE QUALITY      -> eval suites &amp; LLM-as-judge replace "does it compile + lint?"
  UNIT TESTING      -> golden-set regression instead of exact-match asserts
@@ -194,13 +239,20 @@
  SECURITY SCAN     -> prompt injection, jailbreak &amp; red-teaming beyond SAST/DAST
  DEPENDENCY SCAN   -> model provenance &amp; an SBOM for weights and data
  RELEASE &amp; DEPLOY  -> prompt/model version pinning; canary on a model swap
- OBSERVABILITY     -> hallucination rate, drift &amp; token cost as SLOs</code></pre>        <p class="tools">
+ OBSERVABILITY     -> hallucination rate, drift &amp; token cost as SLOs
+ GOVERNANCE        -> HITL, least-privilege agents &amp; audit across every stage above</code></pre>        <p class="tools">
           <strong style="color:var(--heading-3)">Tooling adoption:</strong>
           <span class="tool"><span class="dot early"></span> Early</span>
           <span class="tool"><span class="dot emerging"></span> Emerging</span>
           <span class="tool"><span class="dot growing"></span> Growing</span>
           <span class="tool"><span class="dot mainstream"></span> Mainstream</span>
-        </p>        <aside class="notes">
+        </p>
+        <div class="highlight-box">
+          <p>🔭 <strong>The pattern repeats on every line:</strong> the left side is the DevOps stage you already run;
+            the right side is the new AI artifact to version and the new way it fails silently. Same lifecycle—new
+            surface area at every step.</p>
+        </div>
+        <aside class="notes">
           <p>Here's the roadmap for the next section. Take the DevOps lifecycle you already run, and overlay what changes when the product ships AI. Notice the pattern in every line: the left side is the familiar stage, the right side is the new AI artifact and the new way it can fail. We'll take these one at a time.</p>
         </aside>
       </section>
@@ -216,6 +268,10 @@
             silent behavior drift happen on <em>their</em> release schedule, not yours.</li>
           <li><strong>Non-determinism is now a first-class production concern:</strong> The same input can legitimately
             produce different outputs; "it worked in my testing" means less than it used to.</li>
+          <li><strong>Retrieval sources are runtime inputs:</strong> The documents a RAG system pulls in shape the answer
+            as much as the prompt—stale or poisoned sources change behavior with no code change at all.</li>
+          <li><strong>Agent tools are production privileges:</strong> The set of tools and scopes an agent can call is an
+            artifact too—widening it silently widens your blast radius.</li>
         </ul>
         <div class="highlight-box">
           <p>🧭 <strong>Reframe:</strong> DevOps must now track and gate prompts, model versions, and tool/agent
@@ -237,6 +293,9 @@
         <h3>How Maya's team rebuilds the pipeline so Aria's behavior is visible, testable, and reversible</h3>
         <p class="lead">The old lifecycle stays. Each stage just grows a new AI artifact to version, a new way to fail—and
           a new gate that would have caught the 3AM page.</p>
+        <p style="margin-top:10px;color:var(--muted);font-size:0.82em;max-width:60ch;">Source control · Build &amp;
+          packaging · Code quality · Unit testing · Integration &amp; E2E · Security scanning · Dependency scanning ·
+          Release &amp; deploy · Observability &amp; SLOs</p>
         <aside class="notes">
           <p>This is the turn from problem to solution. We've felt the pain; now we rebuild. For the next nine slides, walk each familiar DevOps stage and ask one question: what would this stage have to become so that Aria's silent model swap gets caught here instead of by a customer? Watch the Aria callout on each slide—that's the through-line.</p>
         </aside>
@@ -255,7 +314,11 @@
             or content-addressed, so retrieval behavior is traceable.</li>
           <li><strong>Meaningful diffs:</strong> A one-line prompt change should surface in review with the same
             visibility as a code change.</li>
+          <li><strong>Owners and history:</strong> CODEOWNERS on prompt and model files, plus a full audit trail, so
+            every behavior change has a name, a date, and a reviewable diff attached to it.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> prompts pasted
+          into a CMS or edited live in a vendor console — invisible to Git, untested, unrevertible.</p>
         <div class="highlight-box">
           <p>🎯 <strong>Rule:</strong> If it can change production behavior, it belongs in version control—with an owner
             and a reviewable diff.</p>
@@ -291,7 +354,11 @@
             index—treat re-embedding as an explicit build step, not an afterthought.</li>
           <li><strong>Provenance baked in:</strong> Each build records exactly which model, prompts, and data snapshot it
             was assembled from.</li>
+          <li><strong>Cache with fingerprints:</strong> Key embedding and response caches to the model + prompt hash, so a
+            silent model change can never serve stale, mismatched results.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> a build that
+          resolves <code>model: latest</code> at deploy time — two "identical" releases, two different behaviors.</p>
         <div class="highlight-box">
           <p>⚙️ <strong>Goal:</strong> Given a release tag, you can reconstruct the exact prompts, model, and data that
             produced its behavior.</p>
@@ -327,7 +394,11 @@
             test-coverage regression.</li>
           <li><strong>Human-reviewed diffs:</strong> Prompt and rubric changes go through code review with clear
             owners—not ad-hoc edits in a config file.</li>
+          <li><strong>Track the eval, not just the pass:</strong> Store scores over time so you can see slow quality
+            erosion—a rubric that drifts down 2% per release is a regression you'd otherwise never notice.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> "the demo looked
+          good" as the merge criterion — a vibe check that no one can reproduce or defend.</p>
         <div class="highlight-box">
           <p>🎯 <strong>Equivalent:</strong> Eval suite ≈ static analysis. Prompt diff review ≈ code review. Eval score
             regression ≈ failed CI build.</p>
@@ -363,7 +434,11 @@
             stable; tolerate variance only where it is genuinely expected.</li>
           <li><strong>Fast and local:</strong> Run a representative golden subset on every PR and the full set nightly.
           </li>
+          <li><strong>Grow the set from incidents:</strong> Every production miss—like Aria's refund answer—becomes a new
+            golden case, so the same bug can never regress twice.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> a single
+          <code>assertEquals(expected, output)</code> against a live model — flaky, brittle, and green by luck.</p>
         <div class="highlight-box">
           <p>⚡ <strong>Result:</strong> Regressions in model behavior get caught at PR time—not by users in production.
           </p>
@@ -399,7 +474,11 @@
             graceful degradation.</li>
           <li><strong>Flake budgets:</strong> Accept a measured variance band and alert when pass rates drift below it,
             rather than chasing every non-deterministic blip.</li>
+          <li><strong>Record &amp; replay traces:</strong> Capture real tool-call sequences and replay them in CI so a
+            regression in the plan-act-observe loop is caught deterministically, without live API cost.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> testing only the
+          model's text while mocking away the tools — the happy path passes, the real agent still breaks.</p>
         <div class="highlight-box">
           <p>🔁 <strong>Shift:</strong> From "assert the exact output" to "assert acceptable behavior within a
             tolerance."</p>
@@ -435,7 +514,11 @@
             least-privilege credentials and human approval for destructive actions.</li>
           <li><strong>Continuous red-teaming:</strong> Adversarial prompt testing becomes a recurring pipeline stage, not
             a one-time pen test.</li>
+          <li><strong>Guard the whole boundary:</strong> Sanitize retrieved documents and tool outputs too—indirect
+            injection hides in the data your model reads, not just the user's message.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> trusting the
+          system prompt to "just say no" — instructions are not a security boundary.</p>
         <div class="warning-box">
           <p>🔒 <strong>New scans:</strong> Prompt-injection suites and red-team runs join SAST/DAST in the pipeline.</p>
         </div>
@@ -470,7 +553,11 @@
             the way you alert on CVEs.</li>
           <li><strong>Third-party prompt &amp; tool risk:</strong> Community prompts, plugins, and MCP tools are
             untrusted dependencies—review before adoption.</li>
+          <li><strong>Pin, then verify:</strong> Snapshot-pin provider models where offered and re-run evals on every
+            provider release note, so an upstream change is a checked event—not a discovery.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> a model
+          referenced only by a floating alias, with no inventory of what version is actually in production.</p>
         <div class="warning-box">
           <p>🔒 <strong>Extend the supply chain:</strong> Models, embeddings, datasets, and agent tools all need
             provenance and review.</p>
@@ -505,6 +592,8 @@
             rollback.</li>
           <li><strong>Change control for prompts:</strong> A prompt edit goes through the same review, eval gate, and
             approval as a code deploy.</li>
+          <li><strong>Shadow &amp; A/B before promote:</strong> Run a candidate model on mirrored traffic with no user
+            impact, compare eval and cost side by side, and promote only on evidence.</li>
         </ul>
         <pre><code> [Prompt/Model Change] ──> [Eval Gate] ──> Pass ──> [Canary] ──> [Full Rollout]
                                       └──> Fail ──> [Block &amp; Review]</code></pre>
@@ -539,7 +628,11 @@
             edits, or shifts in the input distribution.</li>
           <li><strong>Human feedback loops:</strong> Capture thumbs-up/down and escalation signals as telemetry that
             feeds back into the eval / golden-set pipeline.</li>
+          <li><strong>Trace every answer to its inputs:</strong> Log prompt version, model version, retrieved sources,
+            and token counts per request, so any bad output is fully reconstructable—not a mystery.</li>
         </ul>
+        <p style="margin:0.3em 0 0;color:var(--warn);font-size:0.85em;"><strong>❌ Anti-pattern:</strong> a dashboard that
+          proves the service is <em>up</em> while it's confidently <em>wrong</em>.</p>
         <div class="highlight-box">
           <p>📈 <strong>New dashboard rows:</strong> Hallucination rate, eval score trend, and cost-per-interaction—right
             beside CPU, latency, and error rate.</p>
@@ -594,6 +687,11 @@
               <td>AI failures are hard to see</td>
               <td>Hallucination/drift/cost SLOs + fast prompt rollback</td>
             </tr>
+            <tr>
+              <td><strong>Reliability</strong></td>
+              <td>Non-determinism erodes trust in every release</td>
+              <td>Eval-gated promotion + drift alerts keep quality inside an SLO</td>
+            </tr>
           </tbody>
         </table>
         <div class="highlight-box">
@@ -610,24 +708,26 @@
         <h1>The Horizon: When the Product Becomes an Agent</h1>
         <h3>Embedded agents raise the stakes for every stage</h3>
         <div class="grid-2">
-          <div class="card">
+          <div class="card tight">
             <h3>Today: Assistive AI in the Product</h3>
             <p>A model generates text or answers a question; a human decides what to do with it. The failure mode is
-              <strong>a bad answer</strong>.</p>
+              <strong>a bad answer</strong>—annoying, but contained by the human in the loop.</p>
           </div>
-          <div class="card">
+          <div class="card tight">
             <h3>Emerging: Agentic Products</h3>
             <p>The product plans, calls tools, and takes actions on the user's behalf. The failure mode is <strong>a bad
-                action</strong>.</p>
+                action</strong>—and it may execute before anyone reviews it.</p>
           </div>
         </div>
         <h3>What agentic products demand from the stages we just walked:</h3>
-        <ol>
+        <ol class="compact">
           <li><strong>Scoped tool permissions &amp; approval gates</strong> — security stage becomes non-negotiable.</li>
           <li><strong>E2E tests over multi-step tool flows</strong> — integration testing must cover the whole
             plan-act-observe loop.</li>
           <li><strong>Action-level audit &amp; fast rollback</strong> — release and observability must trace <em>what the
               agent did</em>, not just what it said.</li>
+          <li><strong>Reversible-by-design actions</strong> — prefer idempotent, undoable tool calls so a wrong action
+            can be unwound as fast as a wrong answer.</li>
         </ol>
         <div class="scenario">
           <p>Next quarter, Aria won't just <em>describe</em> the refund policy—it will <strong>issue the refund</strong>.
@@ -676,6 +776,11 @@
               <td>Behavior-changing edits bypass review entirely</td>
               <td>Version everything, eval-gate every change, reviewed diffs with owners</td>
             </tr>
+            <tr>
+              <td><strong>Provider lock-in &amp; deprecation</strong></td>
+              <td>A model is retired or repriced on the vendor's timeline</td>
+              <td>Model SBOM, an abstraction/gateway layer, and portable eval suites</td>
+            </tr>
           </tbody>
         </table>
         <aside class="notes">
@@ -698,6 +803,8 @@
             and rollback with the same discipline as code.</li>
           <li><strong>Eval-Gated Release:</strong> No prompt or model reaches production without passing its eval suite.
           </li>
+          <li><strong>Data Governance &amp; Retention:</strong> Control what enters prompts and context, honor privacy and
+            residency rules, and set retention limits on logged inputs, outputs, and traces.</li>
         </ol>
         <div class="warning-box">
           <p>🛡️ <strong>Rule of Thumb:</strong> Trust AI for intelligence and speed; rely on deterministic gates for
@@ -732,6 +839,24 @@
 |  • Automated drift detection with fast prompt/model rollback            |
 |  • Scoped-permission agent flows with action-level audit               |
 +-------------------------------------------------------------------------+</code></pre>
+        <div class="grid-3">
+          <div class="card tight">
+            <h3>Crawl · this sprint</h3>
+            <p>Pure visibility. Prompts in Git, models pinned, one eval check in CI. <em>Most teams finish in days.</em></p>
+          </div>
+          <div class="card tight">
+            <h3>Walk · this quarter</h3>
+            <p>Gates and observation. Eval merge gates, injection scans, SLOs on the dashboard, canaried swaps.</p>
+          </div>
+          <div class="card tight">
+            <h3>Run · ongoing</h3>
+            <p>AI-native delivery. Model SBOM, automated drift detection, scoped agent flows with action-level audit.</p>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <p>🧭 <strong>Don't boil the ocean:</strong> pick the single stage with your biggest blind spot and ship one
+            gate this week. Visibility first, gates second, autonomy last.</p>
+        </div>
         <aside class="notes">
           <p>How do you get there? Crawl, walk, run. Crawl is pure visibility: get prompts into git, pin your model versions, and add one golden-set check in CI—most teams can do this in a sprint. Walk adds gates and observation: eval gates on merge, security scans for injection, and hallucination/cost SLOs, plus canarying model swaps. Run is full AI-native delivery: model SBOMs, automated drift detection with fast rollback, and agent flows with scoped permissions and action audit.</p>
         </aside>
@@ -779,6 +904,7 @@
               <li><strong>A 30-day pilot</strong> with the team and tools we already have&mdash;no new platform, no
                 re-org.</li>
               <li><strong>Prove the pattern, then scale</strong> it Crawl &rarr; Walk &rarr; Run across the portfolio.</li>
+              <li><strong>Weekly checkpoints</strong> so the pilot stays honest and visible to stakeholders.</li>
             </ul>
           </div>
           <div class="card">
@@ -787,6 +913,7 @@
               <li><strong>Visibility:</strong> every prompt and model change becomes a reviewable, revertible diff.</li>
               <li><strong>Confidence:</strong> eval gates and canaries catch regressions before customers do.</li>
               <li><strong>Control:</strong> cost, drift, and hallucinations become measured SLOs&mdash;not surprises.</li>
+              <li><strong>Speed:</strong> teams ship AI changes faster because the gates make them safe to ship.</li>
             </ul>
           </div>
         </div>
@@ -818,6 +945,37 @@
       var total = slides.length;
       var current = 0;
 
+      // ---- Per-slide auto-fit: wrap content and shrink it to fit the fixed frame ----
+      // Move every non-notes child of each slide into a .slide-body wrapper so the engine
+      // can scale just the content (leaving .notes untouched for the presenter view).
+      for (var si = 0; si < total; si++) {
+        var sec = slides[si];
+        var body = document.createElement('div');
+        body.className = 'slide-body';
+        var kids = Array.prototype.slice.call(sec.childNodes);
+        for (var ki = 0; ki < kids.length; ki++) {
+          var node = kids[ki];
+          if (node.nodeType === 1 && node.classList.contains('notes')) continue;
+          body.appendChild(node);
+        }
+        sec.insertBefore(body, sec.firstChild);
+        sec._body = body;
+      }
+
+      function fitSlide(slide) {
+        if (!slide || !slide._body) return;
+        var body = slide._body;
+        body.style.transform = 'none';
+        var cs = window.getComputedStyle(slide);
+        var avail = slide.clientHeight -
+          parseFloat(cs.paddingTop || 0) - parseFloat(cs.paddingBottom || 0);
+        var needed = body.scrollHeight;
+        var f = needed > avail && needed > 0 ? avail / needed : 1;
+        body.style.transform = f < 1 ? 'scale(' + f + ')' : 'none';
+      }
+
+      function fitCurrent() { fitSlide(slides[current]); }
+
       function show(n) {
         if (!total) return;
         current = Math.max(0, Math.min(n, total - 1));
@@ -827,6 +985,7 @@
         counter.textContent = (current + 1) + ' / ' + total;
         var hash = '#/' + (current + 1);
         if (location.hash !== hash) history.replaceState(null, '', hash);
+        fitCurrent();
         updatePresenter();
       }
 
@@ -944,7 +1103,9 @@
       document.getElementById('nav-next').addEventListener('click', function (e) { e.stopPropagation(); next(); });
       document.getElementById('nav-prev').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
 
-      window.addEventListener('resize', scale);
+      window.addEventListener('resize', function () { scale(); fitCurrent(); });
+      document.addEventListener('fullscreenchange', fitCurrent);
+      window.addEventListener('load', fitCurrent);
       window.addEventListener('hashchange', function () {
         var n = parseInt((location.hash.match(/\d+/) || [])[0], 10) - 1;
         if (!isNaN(n) && n !== current) show(n);
