@@ -128,6 +128,39 @@
         </aside>
       </section>
 
+      <!-- Voices from the field -->
+      <section class="slide">
+        <h1>Voices From the Field</h1>
+        <h3>The people who built modern infrastructure and AI have been telling us this is coming</h3>
+        <div class="grid-2" style="gap:12px;margin-top:6px;">
+          <div class="card">
+            <blockquote style="padding:6px 16px;margin:0;">&ldquo;Everything fails all the time.&rdquo;</blockquote>
+            <p style="margin:8px 0 0;"><strong>Werner Vogels</strong> &middot; CTO, Amazon</p>
+          </div>
+          <div class="card">
+            <blockquote style="padding:6px 16px;margin:0;">&ldquo;Testing in production is a superpower.&rdquo;</blockquote>
+            <p style="margin:8px 0 0;"><strong>Charity Majors</strong> &middot; CTO, Honeycomb</p>
+          </div>
+          <div class="card">
+            <blockquote style="padding:6px 16px;margin:0;">&ldquo;The hottest new programming language is English.&rdquo;</blockquote>
+            <p style="margin:8px 0 0;"><strong>Andrej Karpathy</strong> &middot; Founding team, OpenAI &middot; ex-Director of AI, Tesla</p>
+          </div>
+          <div class="card">
+            <blockquote style="padding:6px 16px;margin:0;">&ldquo;AI is the new electricity.&rdquo;</blockquote>
+            <p style="margin:8px 0 0;"><strong>Andrew Ng</strong> &middot; Founder, DeepLearning.AI &middot; co-founder, Coursera</p>
+          </div>
+          <div class="card" style="grid-column:1 / -1;">
+            <blockquote style="padding:6px 16px;margin:0;">&ldquo;Just because a tool is flawed doesn&rsquo;t mean it&rsquo;s not useful &mdash; if you
+              understand its flaws and work around them, there&rsquo;s so much interesting stuff you can do.&rdquo;</blockquote>
+            <p style="margin:8px 0 0;"><strong>Simon Willison</strong> &middot; Co-creator of Django &middot; on building with LLMs</p>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>Before we rebuild anything, let's zoom out. None of what's hitting Maya is a surprise to the people who built our infrastructure and our AI. Werner Vogels told us failure is the normal case, not the exception—design for it. Charity Majors reminds us that we're all testing in production whether we admit it or not, so the responsible move is to observe it on purpose. Karpathy and Ng frame why the artifact changed: English—the prompt—is now code, and AI is a general-purpose force landing in every product. And Simon Willison gives us the posture for the whole talk: these tools are flawed and non-deterministic, but if you understand the flaws and build guardrails around them, they're extraordinarily useful.</p>
+          <p>That last line is the bridge: verification over trust. The rest of the talk is just applying that discipline stage by stage so Aria's flaws get caught by a gate instead of a customer.</p>
+        </aside>
+      </section>
+
       <!-- 4 -->
       <section class="slide">
         <h1>Code-Centric DevOps vs. AI-Embedded DevOps</h1>
